@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="~/Styles/StyleSheet.css" rel="stylesheet" />
+        <link href="~/Frameworks/bootstrap-3.3.5-dist/css/bootstrap.css" rel="stylesheet" />
+        <script src="~/Frameworks/jQuery/jquery-2.1.4.js"></script>
+        <script src="~/Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
+        <title>Garage Manager</title>
+    </head>
+
+    <body>  
+        <div>
+            <img src="~/Content/Images/BannerCar.jpg" width="100%" />
+        </div>
+       
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">                
+                <div>
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Webshop", "Index")</li>
+                        <li>@Html.ActionLink("About us", "About")</li>
+                        <li><a href="#">Reports</a></li>
+                        <li><a href="#">Management</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Register</a></li>
+                        <li><a href="#">Log in</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container" >
+            @RenderBody()
+        </div>
+  
+    </body>
+</html>

@@ -1,0 +1,35 @@
+﻿@model List<Database.Product>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@*<html>
+    <head>
+        <title></title>
+    </head>
+    <body>*@
+        <div id="ContentPlaceHolder1_pnlProducts">
+            @foreach (Database.Product p in Model)
+            {
+                <div>
+                    @{
+                        string ImageUrl = "/Content/Images/Products/" + p.Image;
+                        string clickUrl = Url.Action("Product", "Home", new { id = p.ID.ToString() });
+                        <a href=@clickUrl><img src="@ImageUrl" class="productImage"/></a>
+                        <br />
+                        <label class="productName">
+                            @p.Name
+                        </label>
+                        <br />
+                        <label class="productPrice">
+                            £ @p.Price
+                        </label>
+                    }
+                </div>
+            }
+        </div>
+    @*</body>
+</html>*@
