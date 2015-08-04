@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<head>
+    <title>About us</title>
+    <link rel="stylesheet" href="../Styles/StyleSheet.css" type="text/css" />
+    <meta charset="utf-8">
+
+    <link rel="import" href="../test.html">
+</head>
+<body>
+    <div id="container">About us</div>    <script>
+
+    // Clone the <template> in the import.
+       var link = document.querySelector('link[rel="import"]');
+       var content = link.import;
+
+       // Grab DOM from warning.html's document.
+       var el = content.querySelector('.warning');
+
+       document.body.appendChild(el.cloneNode(true));
+
+    </script>
+</body>
+

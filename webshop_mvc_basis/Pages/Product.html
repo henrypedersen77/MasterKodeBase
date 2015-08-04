@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<head>
+    <title>Products</title>
+    <link rel="stylesheet" href="Styles/StyleSheet.css" type="text/css" />
+</head>
+<body>
+<div>
+    <div>
+        <img src="imgProduct" class="detailsImage" />
+        <h2>
+            <label id="lblTitle"></label>
+        </h2>
+    </div>
+    <div>
+        <label id="lblDescription" class="detailsDescription"></label>
+        <hr />
+        <label id="lblPrice" class=" detailsPrice"></label><br />
+        Quantity:<select id="ddlAmount">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+        </select>
+        <input id="btnAdd" type="button" value="Add Product" class=" button"/>
+        <br />
+        <label id="lblResult"></label>
+    </div>
+    <div>
+        Product No: <br />
+        <label id="lblItemNr" style="font-style: italic"></label>
+    </div>
+    <div class=" auto-style2">
+        <label id="lblAvailable" class="productPrice">Available!</label>
+    </div>
+</div>
+</body>
