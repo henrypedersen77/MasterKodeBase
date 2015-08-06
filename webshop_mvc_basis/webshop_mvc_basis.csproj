@@ -126,6 +126,16 @@
     <Content Include="Content\Images\Products\Fans.jpg" />
     <Content Include="Content\Images\Products\index.jpg" />
     <Content Include="Content\Images\Products\Shock Absorbers.jpg" />
+    <Content Include="Pages\About.html" />
+    <Content Include="Pages\Account\Login.html" />
+    <Content Include="Pages\Account\Register.html" />
+    <Content Include="Pages\Management\Management.html" />
+    <Content Include="Pages\Management\ManageProducts.html" />
+    <Content Include="Pages\Management\ManageProductTypes.html" />
+    <Content Include="Pages\Management\Reports.html" />
+    <Content Include="Pages\Product.html" />
+    <Content Include="Pages\Shoppingcart.html" />
+    <Content Include="Pages\Success.html" />
     <Content Include="Styles\StyleSheet.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -167,7 +177,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Database\Database.csproj">
