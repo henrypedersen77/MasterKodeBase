@@ -1,35 +1,45 @@
 ﻿<!DOCTYPE html>
 <head>
-    <title>Products</title>
-    <link rel="stylesheet" href="Styles/StyleSheet.css" type="text/css" />
+    <title>Product</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="../Styles/StyleSheet.css" rel="stylesheet" />
+    <link href="../Frameworks/bootstrap-3.3.5-dist/css/bootstrap.css" rel="stylesheet" />
+
+    <script src="../Frameworks/jQuery/jquery-2.1.4.js"></script>
+    <script src="../Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
+    <script src="../Scripts/Template.js"></script>  
 </head>
 <body>
-<div>
-    <div>
-        <img src="imgProduct" class="detailsImage" />
-        <h2>
-            <label id="lblTitle"></label>
-        </h2>
+    <div id="header"></div> <!-- Indsætter template her --> 
+    <div id="container">
+        <div>
+            <img src="imgProduct" class="detailsImage" />
+            <h2>
+                <label id="lblTitle"></label>
+            </h2>
+        </div>
+        <div>
+            <label id="lblDescription" class="detailsDescription"></label>
+            <hr />
+            <label id="lblPrice" class=" detailsPrice"></label><br />
+            Quantity:<select id="ddlAmount">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+            </select>
+            <input id="btnAdd" type="button" value="Add Product" class=" button" />
+            <br />
+            <label id="lblResult"></label>
+        </div>
+        <div>
+            Product No: <br />
+            <label id="lblItemNr" style="font-style: italic"></label>
+        </div>
+        <div class=" auto-style2">
+            <label id="lblAvailable" class="productPrice">Available!</label>
+        </div>
     </div>
-    <div>
-        <label id="lblDescription" class="detailsDescription"></label>
-        <hr />
-        <label id="lblPrice" class=" detailsPrice"></label><br />
-        Quantity:<select id="ddlAmount">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-        </select>
-        <input id="btnAdd" type="button" value="Add Product" class=" button"/>
-        <br />
-        <label id="lblResult"></label>
-    </div>
-    <div>
-        Product No: <br />
-        <label id="lblItemNr" style="font-style: italic"></label>
-    </div>
-    <div class=" auto-style2">
-        <label id="lblAvailable" class="productPrice">Available!</label>
-    </div>
-</div>
 </body>

@@ -1,39 +1,54 @@
 ﻿<!DOCTYPE html>
 <head>
     <title>Register</title>
-    <link rel="stylesheet" href="Styles/StyleSheet.css" type="text/css" />
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="/Styles/StyleSheet.css" rel="stylesheet" />
+    <link href="/Frameworks/bootstrap-3.3.5-dist/css/bootstrap.css" rel="stylesheet" />
+
+    <script src="/Frameworks/jQuery/jquery-2.1.4.js"></script>
+    <script src="/Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
+    <script src="/Scripts/Template.js"></script>  
 </head>
 <body>
-    <h4>Register a new user</h4>
-    <hr />
-    <p><div id="statusmessage"></div>
-    </p>
+    <div id="header"></div> <!-- Indsætter template her -->
 
-    User name:<br />
-    <input id="txtUserName" type="text" class="inputs"/><br />
+    <div id="content">
 
-    Password:
-    <br />
-    <input id="txtPassword" type="password" class="inputs" /><br />
+        <h4>Register a new user</h4>
+        <hr />
+        <p>
+            <div id="statusmessage"></div>
+        </p>
 
-    Confirm password:
-    <br />
-    <input id="txtConfirmPassword" type="password" class="inputs" /><br />
+        User name:<br />
+        <input id="txtUserName" type="text" class="inputs" /><br />
 
-    First Name:<br />
-    <input id="txtFirstName" type="text" class="inputs" /><br />
+        Password:
+        <br />
+        <input id="txtPassword" type="password" class="inputs" /><br />
 
-    Last Name:<br />
-    <input id="txtLastName" type="text" class="inputs" /><br />
+        Confirm password:
+        <br />
+        <input id="txtConfirmPassword" type="password" class="inputs" /><br />
 
-    Address:<br />
-    <input id="txtAddress" type="text" class="inputs" /><br />
+        First Name:<br />
+        <input id="txtFirstName" type="text" class="inputs" /><br />
 
-    Postal Code:<br />
-    <input id="txtPostalCode" type="text" class="inputs" /><br />
+        Last Name:<br />
+        <input id="txtLastName" type="text" class="inputs" /><br />
 
-    <p>
-        <input id="btnRegister" type="button" value="Register" />
-    </p>
+        Address:<br />
+        <input id="txtAddress" type="text" class="inputs" /><br />
+
+        Postal Code:<br />
+        <input id="txtPostalCode" type="text" class="inputs" /><br />
+
+        <p>
+            <input id="btnRegister" type="button" value="Register" />
+        </p>
+    </div>
 
 </body>

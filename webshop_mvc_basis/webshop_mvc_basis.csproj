@@ -115,7 +115,6 @@
     <Content Include="Frameworks\bootstrap-3.3.5-dist\js\npm.js" />
     <Content Include="Frameworks\jQuery\jquery-2.1.4.js" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Images\Images.zip" />
     <Content Include="Content\Images\BannerCar.jpg" />
     <Content Include="Content\Images\Products\Body Panels.jpg" />
     <Content Include="Content\Images\Products\BrakeDiscs.jpg" />
@@ -129,6 +128,7 @@
     <Content Include="Pages\About.html" />
     <Content Include="Pages\Account\Login.html" />
     <Content Include="Pages\Account\Register.html" />
+    <Content Include="Pages\Index.html" />
     <Content Include="Pages\Management\Management.html" />
     <Content Include="Pages\Management\ManageProducts.html" />
     <Content Include="Pages\Management\ManageProductTypes.html" />
@@ -136,18 +136,17 @@
     <Content Include="Pages\Product.html" />
     <Content Include="Pages\Shoppingcart.html" />
     <Content Include="Pages\Success.html" />
+    <Content Include="Pages\Template.html" />
+    <Content Include="Scripts\Template.js" />
     <Content Include="Styles\StyleSheet.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CartController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductTypeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -157,7 +156,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Frameworks\bootstrap-3.3.5-dist\css\bootstrap-theme.css.map" />
     <Content Include="Frameworks\bootstrap-3.3.5-dist\css\bootstrap.css.map" />
@@ -165,8 +163,6 @@
     <Content Include="Frameworks\bootstrap-3.3.5-dist\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Frameworks\bootstrap-3.3.5-dist\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Frameworks\bootstrap-3.3.5-dist\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Product.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -176,7 +172,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Database\Database.csproj">
