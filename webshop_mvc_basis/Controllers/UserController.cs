@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 using Database;
@@ -18,6 +19,16 @@ namespace webshop_mvc_basis.Controllers
         {
             db = new garageMVCEntities();
         }
+
+        ////Hvem er logget ind
+        //public HttpResponseMessage Get()
+        //{
+        //    return HttpContext.Current.User.Identity.Name;
+
+        //    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.BadRequest, "Bruger er ikke logget ind");
+        //    return response;
+        //}
+
 
         // GET: api/user/{guid}
         public UserDetail Get(string guid)
