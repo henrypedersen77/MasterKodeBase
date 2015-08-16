@@ -13,7 +13,27 @@
     <script src="/Scripts/Template.js"></script>  
 </head>
 <body>
-    <div id="header"></div> <!-- Indsætter template her -->
+    <div id="header"></div> <!-- Template.js indsætter Template.html her -->
+
+    <!-- MVC JavaScript opgave ---- 
+        
+        Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework. 
+         
+        Ved tryk på Register knap skal der sendes en HTTP Post til url'en "/api/register" med JSON data på formen 
+        {
+            login: "hugo",
+            password: "Hugo1977",
+            user:{
+                FirstName: "Hugo",
+                LastName: "Pedersen",
+                Address: "Birkehøjvej 37",
+                PostalCode: 3700
+            }
+        }
+        Dette modtages af metoden "public HttpResponseMessage Post([FromBody]LoginPasswordUser user)" i /Controllers/RegisterController.cs
+
+        Hvis Post'en returnere ok, så redirect til /Pages/index.html
+        Ellers bliv på register siden og skriv en fejlbesked til brugeren.-->
 
     <div id="content">
 

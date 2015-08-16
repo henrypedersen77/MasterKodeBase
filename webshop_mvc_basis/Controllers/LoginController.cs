@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Database;
+using Database.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using System;
@@ -14,13 +16,27 @@ namespace webshop_mvc_basis.Controllers
 {
     public class LoginController : ApiController
     {
+        private Database.garageMVCEntities db;
+
+        public LoginController()
+        {
+            db = new garageMVCEntities();
+        }
+
         //Login brugerens detaljer, eller Bad request(400) hvis bruger ikke er logget ind
         public HttpResponseMessage Get()
         {
             HttpResponseMessage response;
 
             if(HttpContext.Current.User.Identity.IsAuthenticated){
-                response = Request.CreateResponse(HttpStatusCode.OK, HttpContext.Current.User);
+                UserDetailFacade facade = new UserDetailFacade(db);
+                UserDetail ud = facade.Get((HttpContext.Current.User.Identity.GetUserId()));
+
+                LoginPasswordUser lpu = new LoginPasswordUser();
+                lpu.user = ud;
+                lpu.login = HttpContext.Current.User.Identity.Name;
+
+                response = Request.CreateResponse(HttpStatusCode.OK, lpu);
             } 
             else{
                  response = Request.CreateResponse(HttpStatusCode.BadRequest, "Bruger er ikke logget ind");
@@ -32,7 +48,7 @@ namespace webshop_mvc_basis.Controllers
 
         //Login funktion
         [HttpPost]
-        public HttpResponseMessage Post([FromBody]LoginPassword lp)
+        public HttpResponseMessage Post([FromBody]LoginPasswordUser lp)
         {
             UserStore<IdentityUser> userStore = new UserStore<IdentityUser>();
 

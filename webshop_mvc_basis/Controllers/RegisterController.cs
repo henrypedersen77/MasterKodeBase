@@ -1,4 +1,5 @@
 ﻿using Database;
+using Database.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
@@ -15,12 +16,17 @@ namespace webshop_mvc_basis.Controllers
 {
     public class RegisterController : ApiController
     {
+        private Database.garageMVCEntities db;
+
+        public RegisterController()
+        {
+            db = new garageMVCEntities();
+        }
+
         //Registrere en ny bruger, + efterfølgende login
         [HttpPost]
-        public HttpResponseMessage Post([FromBody]LoginPassword user)
+        public HttpResponseMessage Post([FromBody]LoginPasswordUser user)
         {
-            //UserDetail user, 
-
             // Default UserStore constructor uses the default connection string named: DefaultConnection
             var userStore = new UserStore<IdentityUser>();
 
@@ -35,19 +41,19 @@ namespace webshop_mvc_basis.Controllers
             IdentityResult result = manager.Create(iUser, user.password);
             if (result.Succeeded)
             {
-                //UserDetail userDetail = new UserDetail
-                //{
-                //    Address = txtAddress.Text,
-                //    FirstName = txtFirstName.Text,
-                //    LastName = txtLastName.Text,
-                //    Guid = user.Id,
-                //    PostalCode = Convert.ToInt32(txtPostalCode.Text)
-                //};
+                UserDetail userDetail = new UserDetail
+                {
+                    Address = user.user.Address,
+                    FirstName = user.user.FirstName,
+                    LastName = user.user.LastName,
+                    Guid = iUser.Id,
+                    PostalCode = Convert.ToInt32(user.user.PostalCode)
+                };
 
-                //UserDetailModel model = new UserDetailModel();
-                //model.InsertUserDetail(userDetail);
+                UserDetailFacade facade = new UserDetailFacade(db);
+                facade.Insert(userDetail);
 
-                //Store user in DB
+                //Store identity-user in DB
                 var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
                 var userIdentity = manager.CreateIdentity(iUser, DefaultAuthenticationTypes.ApplicationCookie);
 
