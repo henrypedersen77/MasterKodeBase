@@ -35,7 +35,7 @@ namespace webshop_mvc_basis.Controllers
         }
 
         [HttpPost]
-        [Route("api/paid")]
+        [Route("api/cart/paid")]
         public void MarkOrdersAsPaid([FromBody]List<Cart> carts)
         {
             CartFacade facade = new CartFacade(db);

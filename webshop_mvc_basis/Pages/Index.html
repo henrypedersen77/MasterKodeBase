@@ -14,10 +14,23 @@
     <script src="../Scripts/Template.js"></script>  
 </head>
 <body>
-    <div id="header"></div> <!-- Indsætter template her --> 
+    <div id="header"></div>  <!-- Template.js indsætter Template.html her -->
 
     <div id="ContentPlaceHolder1_pnlProducts">
-        <!-- Der skal laves et div element per produkt -->
+        <!-- MVC JavaScript opgave ---- 
+             Der skal laves et div element per produkt, eller en række i et grid.
+             Alle produkterne hentes fra databasen ved at udføre en HTTP GET REST kald til api/product.
+             Dette kald håndteres af metoden "public List<Product> Get()" i /Controllers/ProductController.cs -->
+        <div>
+            <!-- MVC JavaScript opgave ---- 
+                 Ved klik på nedenstående billede skal der redirectes til siden /pages/product.html og det angivede
+                 Produkt skal vises på den side. -->
+            <input type="image" class="productImage" src="Images/Products/?.jpg"  />
+            <br />
+            <span class="productName">?</span>
+            <br />
+            <span class="productPrice">?</span>
+        </div>
     </div>
 
 </body>

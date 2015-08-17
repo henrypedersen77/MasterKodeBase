@@ -13,8 +13,11 @@
     <script src="../Scripts/Template.js"></script>  
 </head>
 <body>
-    <div id="header"></div> <!-- Indsætter template her --> 
+    <div id="header"></div> <!-- Template.js indsætter Template.html her -->
+
     <div id="container">
+        <!-- MVC JavaScript opgave ----
+         Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework. -->
         <div>
             <img src="imgProduct" class="detailsImage" />
             <h2>
@@ -30,14 +33,32 @@
                 <option>2</option>
                 <option>3</option>
             </select>
+            <!-- MVC JavaScript opgave ---- 
+                 Ved tryk på nedenstående knap skal der sender en HTTP post til /api/cart med JSON data på følgende form
+                    {
+	                    "ClientID" : "1f500a65-fe8f-4423-8ca7-4edd47b2f4ed",
+	                    "ProductID" : 12,
+	                    "Amount" : 2,
+	                    "DatePurchased" : "2015-08-17 20:18:00",
+	                    "IsInCart" : "true"
+                    } 
+                
+                ClientID findes ved at lave en HTTP get til /api/login, Client id står så i det returenerede GUID felt.
+                Hvis der returees en HTTP 400 fejlbesked, så er bruger ikke logget ind, og så skal lblResult udfyldes 
+                med beskeden "Please log in to order items" -->
             <input id="btnAdd" type="button" value="Add Product" class=" button" />
             <br />
+
+            <!-- MVC JavaScript opgave ---- 
+                 Efter klik på Add Product knappen, skal beskeden "Order was succesfully inserted" stå angivet i nedenstående label -->
             <label id="lblResult"></label>
         </div>
         <div>
             Product No: <br />
             <label id="lblItemNr" style="font-style: italic"></label>
         </div>
+
+        <!-- Nedenstående felt lblAvailable bindes der ikke til, den blev heller ikke anvedt i tutorialen. -->
         <div class=" auto-style2">
             <label id="lblAvailable" class="productPrice">Available!</label>
         </div>

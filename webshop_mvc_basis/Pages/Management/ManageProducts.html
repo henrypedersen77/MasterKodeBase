@@ -13,18 +13,25 @@
     <script src="/Scripts/Template.js"></script> 
 </head>
 <body>
-    <div id="header"></div> <!-- Indsætter template her -->
+    <div id="header"></div> <!-- Template.js indsætter Template.html her -->
 
     <div id="content">
-
+        <!-- MVC JavaScript opgave ----
+             Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework. 
+             -->
         <p>Name:</p>
         <p>
             <input id="txtName" type="text" class="inputs" />
         </p>
+
         <p>
             Type:
         </p>
         <p>
+            <!-- MVC JavaScript opgave ----
+                 Nedenstående dropdown kommer fra produkttype tabellen, og data skal hentes ved at udføre
+                 et HTTP GET REST kald til api/producttypes.
+                 Dette kald håndteres af metoden "public List<ProductType> Get()" i /Controllers/ProductTypeController.cs -->
             <select id="ddlType" class="inputs">
                 <option>1</option>
                 <option>2</option>
@@ -39,6 +46,10 @@
         <p>
             Image:
         </p>
+        <!-- MVC JavaScript opgave ----
+             Nedenstående dropdown kommer fra produktbilledefilerne på serveren, og filnavne på disse hentes ved at udføre
+             et HTTP GET REST kald til api/image.
+             Dette kald håndteres af metoden "public List<string> Get()" i /Controllers/ImageController.cs -->
         <p>
             <select id="ddlImage" class="inputs">
                 <option>1</option>
@@ -51,6 +62,16 @@
         <p>
             <input id="txtDescription" type="text" class="inputs" />
         </p>
+         <!-- MVC JavaScript opgave ----
+              Ved tryk på nednestående knap skal der sendes en HTTP post til /api/product med JSON dataet på formen
+                 {
+                    "TypeID": 4,
+                    "Name": "Fuel Filters",
+                    "Price": 150.0,
+                    "Description": "bla bla bla",
+                    "Image": "Cylinder Heads.jpg"
+                }
+             I feltet lblResult skal der angives om det er gået godt eller ej -->
         <p>
             <input id="btnSubmit" type="button" value="Submit" />
         </p>

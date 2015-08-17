@@ -15,12 +15,19 @@
     <script src="/Scripts/Template.js"></script>
 </head>
 <body>
-    <div id="header"></div> <!-- Indsætter template her -->
+    <div id="header"></div> <!-- Template.js indsætter Template.html her -->
 
     <div id="content">
-        <input id="btnAddNewProduct" type="button" value="Add new Product" class=" button" />
+
+        <!-- MVC JavaScript opgave ----
+             Nedensående knap skal redirecte til siden "/Pages/Management/ManageProducts.html" -->
+        <input id="btnAddNewProduct" type="button" value="Add new Product" class=" button"/>
         <p style="clear: both"></p>
 
+        <!-- MVC JavaScript opgave ----
+             Nedenstående skal representere alle producter i databasen.
+             Alle produkterne hentes fra databasen ved at udføre en HTTP GET REST kald til api/product.
+             Dette kald håndteres af metoden "public List<Product> Get()" i /Controllers/ProductController.cs -->
         <div id="grdProducts">
             <div id="ID">ID</div>
             <div id="TypeID">TypeID</div>
@@ -28,17 +35,44 @@
             <div id="Price">Price</div>
             <div id="Description">Description</div>
 
+            <!-- MVC JavaScript opgave ----
+             Nedenstående knap sletter produktet repræsenteret ved rækken,
+             dette sker ved at sende en HTTP delete til api/product/[produktId],
+             efterfølgende skal ovenstående tabel/grid reloades -->
+            <button>Delete</button>
+
+            <!-- MVC JavaScript opgave ----
+            Nedenstående knap redigere produktet repræsenteret ved rækken,
+            dette gøres ved at redirecte til siden pages/management/ManageProduct med det valgte produkt -->
+            <button>Edit</button>
         </div>
         <br />
+
+        <!-- MVC JavaScript opgave ----
+             Nedensående knap skal redirecte til siden "/Pages/Management/ManageProductTypes.html" -->
         <input id="btnAddNewProductTypes" type="button" value="Add new types" class=" button" />
 
         <p style="clear: both"></p>
         <br />
 
+        <!-- MVC JavaScript opgave ----
+         Nedenstående skal representere alle produkttyper i databasen.
+         Alle produkttyper hentes fra databasen ved at udføre en HTTP GET REST kald til api/producttypes.
+         Dette kald håndteres af metoden "public List<ProductType> Get()" i /Controllers/ProductTypeController.cs -->
         <div id="grdProductTypes">
             <div id="ID">ID</div>
             <div id="Name">Name</div>
 
+            <!-- MVC JavaScript opgave ----
+            Nedenstående knap sletter produktet repræsenteret ved rækken,
+            dette sker ved at sende en HTTP delete til api/producttype/[produkttypeId],
+            efterfølgende skal ovenstående tabel/grid reloades -->
+            <button>Delete</button>
+
+            <!-- MVC JavaScript opgave ----
+            Nedenstående knap redigere produktettypen repræsenteret ved rækken,
+            dette gøres ved at redirecte til siden pages/management/ManageProductType med den valgte produkttype -->
+            <button>Edit</button>
         </div>
     </div>
 </body>
