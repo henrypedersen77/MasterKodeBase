@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html data-ng-app="About">
 <head>
     <title>About us</title>
 
@@ -11,19 +11,21 @@
 
     <script src="../Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="../Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
-    <script src="../Scripts/Template.js"></script>  
+    <script src="../Scripts/Template.js"></script>
+    <script src="../Frameworks/angular-1.4.5/angular.js"></script>
+    <script src="../Scripts/About.js"></script>
 </head>
-<body>
+<body ng-controller="AboutCtrl as ctrl">
     <div id="header"></div> <!-- Template.js indsætter Template.html her -->
 
     <div id="container">
         <div>
             <blockquote>
                 <p>
-                    "We know what we are, but not what we may be ."
+                    {{ctrl.qoute}}
                 </p>
                 <p>
-                    <small>Abraham Lincoln</small>
+                    <small>{{ctrl.author}}</small>
                 </p>
             </blockquote>
         </div>

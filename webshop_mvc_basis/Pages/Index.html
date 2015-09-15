@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="Index">
 <head>
     <title>Garage Manager</title>
 
@@ -11,26 +11,29 @@
 
     <script src="../Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="../Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
-    <script src="../Scripts/Template.js"></script>  
+    <script src="../Scripts/Template.js"></script>
+    <script src="../Frameworks/angular-1.4.5/angular.js"></script>
+    <script src="../Scripts/Index.js"></script>
 </head>
-<body>
+<body ng-controller="IndexCtrl as ctrl">
     <div id="header"></div>  <!-- Template.js indsætter Template.html her -->
 
     <div id="ContentPlaceHolder1_pnlProducts">
-        <!-- MVC JavaScript opgave ---- 
+        <!-- MVC JavaScript opgave 
              Der skal laves et div element per produkt, eller en række i et grid.
              Alle produkterne hentes fra databasen ved at udføre en HTTP GET REST kald til api/product.
-             Dette kald håndteres af metoden "public List<Product> Get()" i /Controllers/ProductController.cs 
+             Dette kald håndteres af metoden "public List<Product> Get()" i /Controllers/ProductController.cs
              Billedet sættes ved at sætte src til "../Content/Images/Products/" + billedes navn returneret fra ovenstående-->
-        <div>
-            <!-- MVC JavaScript opgave ---- 
-                 Ved klik på nedenstående billede skal der redirectes til siden /pages/product.html og det angivede
-                 Produkt skal vises på den side. -->
-            <input type="image" class="productImage" src="../Content/Images/Products/?.jpg"  />
+        
+        <div data-ng-repeat="p in ctrl.products">
+            <!-- MVC JavaScript opgave 
+             Ved klik på nedenstående billede skal der redirectes til siden /pages/product.html og det angivede
+             Produkt skal vises på den side. -->
+            <input type="image" class="productImage" ng-src={{ctrl.getImageLink(p.Image)}} ng-click="ctrl.rederect(p.ID)" />
             <br />
-            <span class="productName">?</span>
+            <span class="productName">{{p.Name}}</span>
             <br />
-            <span class="productPrice">?</span>
+            <span class="productPrice">{{p.Price}}</span>
         </div>
     </div>
 
