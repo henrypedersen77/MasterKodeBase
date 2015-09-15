@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="Login">
 <head>
     <title>Login</title>
 
@@ -10,16 +11,17 @@
 
     <script src="/Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="/Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
-    <script src="/Scripts/Template.js"></script>  
+    <script src="/Scripts/Template.js"></script>
+    <script src="/Frameworks/angular-1.4.5/angular.js"></script>
+    <script src="/Scripts/Login.js"></script>
 </head>
-<body>
+<body ng-controller="LoginCtrl as ctrl">
     <div id="header"></div> <!-- Template.js indsætter Template.html her -->
+    <!-- MVC JavaScript opgave 
 
-    <!-- MVC JavaScript opgave ----
-    
-        Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework. 
-         
-        Ved tryk på login knap skal der sendes en HTTP Post til url'en "/api/login" med JSON data på formen 
+        Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework.
+
+        Ved tryk på login knap skal der sendes en HTTP Post til url'en "/api/login" med JSON data på formen
         {
             login: "henry",
             password: "Henry1977"
@@ -31,15 +33,17 @@
     <div id="content">
         <h4>Log In</h4><hr />
         <p>
-            <div id="statusmessage"></div>
+            <div id="statusmessage" ng-bind="ctrl.errorMsg"></div>
         </p>
         User name:<br />
-        <input id="txtUserName" type="text" class="inputs" /><br />
+        <input id="txtUserName" type="text" class="inputs" ng-model="ctrl.user" /><br />
 
         Password:
         <br />
-        <input id="txtPassword" type="password" class="inputs" /><br />
+        <input id="txtPassword" type="password" class="inputs" ng-model="ctrl.password" /><br />
 
-        <input id="btnLogin" type="button" value="Log in" class="button" />
+        <input id="btnLogin" type="button" value="Log in" class="button" ng-click="ctrl.login()" />
+        <!--<button id="btnLogin" type="button" value="Log in" class="button" ng-click="ctrl.login()"></button>-->
     </div>
 </body>
+</html>
