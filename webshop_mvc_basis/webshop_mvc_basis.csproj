@@ -2483,6 +2483,7 @@
     <Content Include="Scripts\AdminAuthorization.js" />
     <Content Include="Scripts\Index.js" />
     <Content Include="Scripts\Login.js" />
+    <Content Include="Scripts\Product.js" />
     <Content Include="Scripts\Template.js" />
     <Content Include="Styles\StyleSheet.css" />
     <Content Include="Web.config">

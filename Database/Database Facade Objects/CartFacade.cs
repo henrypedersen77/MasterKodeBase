@@ -21,8 +21,15 @@ namespace Database
 
         public void Insert(Cart cart)
         {
-            db.Carts.Add(cart);
-            db.SaveChanges();
+            try
+            {
+                db.Carts.Add(cart);
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+
+            }
         }
 
         public void Update(Cart cart)

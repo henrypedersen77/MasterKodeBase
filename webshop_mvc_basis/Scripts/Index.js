@@ -13,7 +13,7 @@
 
         self.rederect = function (p) {
             
-                $window.location.href = '../Pages/Product.html?Id=' + p;
+                $window.location.href = '../Pages/Product.html#?Id=' + p;
             
         }
     }]);

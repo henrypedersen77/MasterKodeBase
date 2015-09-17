@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="Product">
 <head>
     <title>Product</title>
 
@@ -10,57 +11,60 @@
 
     <script src="../Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="../Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
-    <script src="../Scripts/Template.js"></script>  
+    <script src="../Scripts/Template.js"></script>
+
+    <script src="../Frameworks/angular-1.4.5/angular.js"></script>
+    <script src="../Scripts/Product.js"></script>
 </head>
-<body>
+<body ng-controller="ProductCtrl as ctrl">
     <div id="header"></div> <!-- Template.js indsætter Template.html her -->
 
     <div id="container">
         <!-- MVC JavaScript opgave ----
-         Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework. 
+         Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework.
          Dvs. det pågældende produkt skal loades fra databasen og vises i nednestående html elementer.
-         
-         I url'en angives det produkt brugeren vil se, ex.: http://localhost:1342/Pages/Product.html?id=15 
+
+         I url'en angives det produkt brugeren vil se, ex.: http://localhost:1342/Pages/Product.html#?id=15
          I ovenstående er det produkt med id 15 der skal loades og vises på siden.
         -->
         <div>
-            <img src="imgProduct" class="detailsImage" />
+            <img ng-src={{ctrl.getImageLink(ctrl.product.Image)}} class="detailsImage" />
             <h2>
-                <label id="lblTitle"></label>
+                <label id="lblTitle">{{ctrl.Name}}</label>
             </h2>
         </div>
         <div>
-            <label id="lblDescription" class="detailsDescription"></label>
+            <label id="lblDescription" class="detailsDescription">{{ctrl.product.Description}}</label>
             <hr />
-            <label id="lblPrice" class=" detailsPrice"></label><br />
-            Quantity:<select id="ddlAmount">
+            <label id="lblPrice" class=" detailsPrice">{{ctrl.product.Price}}</label><br />
+            Quantity:<select id="ddlAmount" ng-model="ctrl.product.amount">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
             </select>
-            <!-- MVC JavaScript opgave ---- 
+            <!-- MVC JavaScript opgave
                  Ved tryk på nedenstående knap skal der sender en HTTP post til /api/cart med JSON data på følgende form
                     {
-	                    "ClientID" : "1f500a65-fe8f-4423-8ca7-4edd47b2f4ed",
-	                    "ProductID" : 12,
-	                    "Amount" : 2,
-	                    "DatePurchased" : "2015-08-17 20:18:00",
-	                    "IsInCart" : "true"
-                    } 
-                
+                        "ClientID" : "1f500a65-fe8f-4423-8ca7-4edd47b2f4ed",
+                        "ProductID" : 12,
+                        "Amount" : 2,
+                        "DatePurchased" : "2015-08-17 20:18:00",
+                        "IsInCart" : "true"
+                    }
+
                 ClientID findes ved at lave en HTTP get til /api/login, Client id står så i det returenerede GUID felt.
-                Hvis der returees en HTTP 400 fejlbesked, så er bruger ikke logget ind, og så skal lblResult udfyldes 
+                Hvis der returees en HTTP 400 fejlbesked, så er bruger ikke logget ind, og så skal lblResult udfyldes
                 med beskeden "Please log in to order items" -->
-            <input id="btnAdd" type="button" value="Add Product" class=" button" />
+            <input id="btnAdd" type="button" value="Add Product" class=" button" ng-click="ctrl.buy()"/>
             <br />
 
-            <!-- MVC JavaScript opgave ---- 
+            <!-- MVC JavaScript opgave ----
                  Efter klik på Add Product knappen, skal beskeden "Order was succesfully inserted" stå angivet i nedenstående label -->
-            <label id="lblResult"></label>
+            <label id="lblResult">{{ctrl.message}}</label>
         </div>
         <div>
             Product No: <br />
-            <label id="lblItemNr" style="font-style: italic"></label>
+            <label id="lblItemNr" style="font-style: italic">{{ctrl.product.ID}}</label>
         </div>
 
         <!-- Nedenstående felt lblAvailable bindes der ikke til, den blev heller ikke anvedt i tutorialen. -->
@@ -69,3 +73,4 @@
         </div>
     </div>
 </body>
+</html>
