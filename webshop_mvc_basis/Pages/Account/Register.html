@@ -1,7 +1,8 @@
 ﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="Register">
 <head>
     <title>Register</title>
-    
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -10,16 +11,18 @@
 
     <script src="/Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="/Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
-    <script src="/Scripts/Template.js"></script>  
-</head>
-<body>
-    <div id="header"></div> <!-- Template.js indsætter Template.html her -->
+    <script src="/Scripts/Template.js"></script>
 
-    <!-- MVC JavaScript opgave ---- 
-        
-        Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework. 
-         
-        Ved tryk på Register knap skal der sendes en HTTP Post til url'en "/api/register" med JSON data på formen 
+    <script src="/Frameworks/angular-1.4.5/angular.js"></script>
+    <script src="/Scripts/Register.js"></script>
+</head>
+<body ng-controller="RegisterCtrl as ctrl">
+    <div id="header"></div> <!-- Template.js indsætter Template.html her -->
+    <!-- MVC JavaScript opgave ----
+
+        Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework.
+
+        Ved tryk på Register knap skal der sendes en HTTP Post til url'en "/api/register" med JSON data på formen
         {
             login: "hugo",
             password: "Hugo1977",
@@ -36,39 +39,39 @@
         Ellers bliv på register siden og skriv en fejlbesked til brugeren.-->
 
     <div id="content">
-
         <h4>Register a new user</h4>
         <hr />
         <p>
-            <div id="statusmessage"></div>
+            <div id="statusmessage">{{ctrl.message}}</div>
         </p>
 
         User name:<br />
-        <input id="txtUserName" type="text" class="inputs" /><br />
+        <input id="txtUserName" type="text" class="inputs" ng-model="ctrl.username" /><br />
 
         Password:
         <br />
-        <input id="txtPassword" type="password" class="inputs" /><br />
+        <input id="txtPassword" type="password" class="inputs" ng-model="ctrl.password" /><br />
 
         Confirm password:
         <br />
-        <input id="txtConfirmPassword" type="password" class="inputs" /><br />
+        <input id="txtConfirmPassword" type="password" class="inputs" ng-model="ctrl.confirmpassword" /><br />
 
         First Name:<br />
-        <input id="txtFirstName" type="text" class="inputs" /><br />
+        <input id="txtFirstName" type="text" class="inputs" ng-model="ctrl.firstname" /><br />
 
         Last Name:<br />
-        <input id="txtLastName" type="text" class="inputs" /><br />
+        <input id="txtLastName" type="text" class="inputs" ng-model="ctrl.lastname" /><br />
 
         Address:<br />
-        <input id="txtAddress" type="text" class="inputs" /><br />
+        <input id="txtAddress" type="text" class="inputs" ng-model="ctrl.address" /><br />
 
         Postal Code:<br />
-        <input id="txtPostalCode" type="text" class="inputs" /><br />
+        <input id="txtPostalCode" type="text" class="inputs" ng-model="ctrl.postalcode" /><br />
 
         <p>
-            <input id="btnRegister" type="button" value="Register" class="button" />
+            <input id="btnRegister" type="button" value="Register" class="button" ng-click="ctrl.register()" />
         </p>
     </div>
 
 </body>
+</html>
