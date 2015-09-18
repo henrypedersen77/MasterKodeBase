@@ -1,7 +1,8 @@
 ﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="Shoppingcart">
 <head>
     <title>Shopping Cart</title>
-    
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -10,89 +11,89 @@
 
     <script src="/Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="/Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
-    <script src="/Scripts/Template.js"></script>  
+    <script src="/Scripts/Template.js"></script>
+
+    <script src="../Frameworks/angular-1.4.5/angular.js"></script>
+    <script src="../Scripts/Shoppingcart.js"></script>
 </head>
-<body>
+<body ng-controller="ShoppingcartCtrl as ctrl">
     <div id="header"></div> <!-- Template.js indsætter Template.html her -->
 
     <div id="content">
 
         <div id="ContentPlaceHolder1_pnlShoppingCart">
             <!-- MVC JavaScript opgave ----
-                 Der skal laves en table per cart returneret fra HTTP get kaldet til /api/chart/{userId}/orders"-->
-            <table class="CartTable">
+                 Der skal laves en table per cart returneret fra HTTP get kaldet til /api/cart/{userId}/orders"-->
+            <table class="CartTable" data-ng-repeat="cart in ctrl.carts">
                 <tr>
-                    <td rowspan="2" style="width:50px;">
-                        <input type="image" src="../Images/Products/Cylinder%20Heads.jpg" />
-                    </td>
-                    <td align="left" style="width:350px;">
-                        <h4>Product.Name</h4><br />
-                        Item No: Product.ID<br />
-                        In Stock
-                    </td>
-                    <td>Unit Price<hr /></td>
-                    <td>Quantity<hr /></td>
-                    <td>Item Total<hr /></td>
-
-                     <!-- MVC JavaScript opgave ----
-                          Ved tryk på delete skal der sendes en HTTP Delete til /api/cart/{cartID} 
-                          + denne side skal opfriskes -->
-                    <td><a id="ContentPlaceHolder1_del8">Delete Item</a></td>
+                    <td rowspan=" 2" style="width:50px;">
+                        <input type="image" ng-src={{ctrl.getImageLink(cart.Product.Image)}} />
+                </td>
+                <td align="left" style="width:350px;">
+                    <h4>{{cart.Product.Name}}</h4><br />
+                    Item No: {{cart.Product.ID}}<br />
+                    In Stock
+                </td>
+                <td>Unit Price<hr /></td>
+                <td>Quantity<hr /></td>
+                <td>Item Total<hr /></td>
+                <!-- MVC JavaScript opgave ----
+             Ved tryk på delete skal der sendes en HTTP Delete til /api/cart/{cartID}
+             + denne side skal opfriskes -->
+                <td><a id="ContentPlaceHolder1_del8" ng-click="ctrl.deleteorder(cart)">Delete Item</a></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td>Product.Price</td>
+                    <td>{{cart.Product.Price}}</td>
                     <td>
                         <!-- MVC JavaScript opgave ----
-                             Rettes der i nedenstående amount, skal der sendes en HTTP post til /api/cart/{cartid}/amount med
-                             antal angivet i JSON dataet-->
+                     Rettes der i nedenstående amount, skal der sendes en HTTP post til /api/cart/{cartid}/amount med
+                     antal angivet i JSON dataet-->
                         Amount
-                        <select>
-                            <option selected="selected" value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
+                        <select ng-change="ctrl.changeamount(cart)" ng-model="cart.Amount" data-ng-options="i for i in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">
+                            <!--<option selected="selected" value="1">1</option>-->
+                            <!--<option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+        <option>13</option>
+        <option>14</option>
+        <option>15</option>
+        <option>16</option>
+        <option>17</option>
+        <option>18</option>
+        <option>19</option>
+        <option>20</option>-->
                         </select>
                     </td>
-                    <td>Amoun * Product.Price</td>
-                    </td>
+                    <td>{{cart.Product.Price * cart.Amount}}</td>
+                    <!--</td>-->
                 </tr>
             </table>
-
         </div>
-
         <table>
             <tr>
                 <td>
                     <b>Total: </b>
                 </td>
                 <td>
-                    Sum af priserne på alle cart
+                    {{ctrl.total}}
                 </td>
             </tr>
-
             <tr>
                 <td>
                     <b>Vat: </b>
                 </td>
                 <td>
-                    subTotal * 0.21;
+                    {{ctrl.vat}}
                 </td>
             </tr>
             <tr>
@@ -100,26 +101,23 @@
                     <b>Shipping: </b>
                 </td>
                 <td>
-                    £ 15
+                    {{ctrl.shipping}}
                 </td>
             </tr>
-
             <tr>
                 <td>
                     <b>Total Amount: </b>
                 </td>
                 <td>
-                    sum af priserne + shipping + vat
+                    {{ctrl.totalamount}}
                 </td>
             </tr>
-
             <tr>
                 <td>
                     <br />
                     <!-- MVC JavaScript opgave ----
                          Ved tryk på continue shopping redirectes der til "Pages/Index.html" -->
                     <a id="ContentPlaceHolder1_LinkButton1" href="Index.html">Continue Shopping</a> &nbsp;&nbsp; or
-
                     <!-- MVC JavaScript opgave ----
                          Ved tryk på checkout skal der sendes en HTTP post til api/cart/paid, med JSON data på formen
                             [
@@ -127,15 +125,11 @@
                                 {ID: 2}
                             ]
                     ID'erne angiver cart'sne ID'er.
-                    
                     Der skal sluttes af med at redirecte til Pages/Success.html -->
-                    <input type="submit" value="Check Out" id="ContentPlaceHolder1_btnCheckout" class="button" style="width:250px;" />
+                    <input ng-click="ctrl.checkout()" type="submit" value="Check Out" id="ContentPlaceHolder1_btnCheckout" class="button" style="width:250px;" />
                 </td>
             </tr>
-
         </table>
-
     </div>
-
 </body>
-
+</html>
