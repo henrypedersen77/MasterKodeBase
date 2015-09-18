@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     $.get("/api/login", function (data) {
-        var obj = jQuery.parseJSON(data);
-        if (obj.login !== "admin") {
+        //var obj = jQuery.parseJSON(data);
+        if (data.login !== "admin") {
             //bruger er ikke admin redirect til Login siden
             window.location.href = "/Pages/Account/Login.html";
         }
