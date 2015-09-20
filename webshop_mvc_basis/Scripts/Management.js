@@ -23,7 +23,7 @@
         };
         self.deleteproducttype = function (producttypeid) {
             $http.delete('/api/producttype/' + producttypeid).then(function () {
-                self.getproducts();
+                self.getproducttypes();
             });
         };
         self.editproduct = function (productid) {
