@@ -2484,6 +2484,7 @@
     <Content Include="Scripts\Index.js" />
     <Content Include="Scripts\Login.js" />
     <Content Include="Scripts\Management.js" />
+    <Content Include="Scripts\ManageProductTypes.js" />
     <Content Include="Scripts\Product.js" />
     <Content Include="Scripts\Register.js" />
     <Content Include="Scripts\Shoppingcart.js" />
