@@ -1,7 +1,8 @@
 ﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="ManageProduct">
 <head>
     <title>Manage product</title>
-    
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -10,18 +11,21 @@
 
     <script src="/Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="/Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
-    <script src="/Scripts/Template.js"></script> 
+    <script src="/Scripts/Template.js"></script>
+
+    <script src="/Frameworks/angular-1.4.5/angular.js"></script>
+    <script src="/Scripts/ManageProducts.js"></script>
 </head>
-<body>
+<body ng-controller="ManageProductCtrl as ctrl">
     <div id="header"></div> <!-- Template.js indsætter Template.html her -->
 
     <div id="content">
         <!-- MVC JavaScript opgave ----
-             Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework. 
+             Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework.
              -->
         <p>Name:</p>
         <p>
-            <input id="txtName" type="text" class="inputs" />
+            <input id="txtName" type="text" class="inputs" ng-model="ctrl.product.Name" />
         </p>
 
         <p>
@@ -32,16 +36,13 @@
                  Nedenstående dropdown kommer fra produkttype tabellen, og data skal hentes ved at udføre
                  et HTTP GET REST kald til api/producttypes.
                  Dette kald håndteres af metoden "public List<ProductType> Get()" i /Controllers/ProductTypeController.cs -->
-            <select id="ddlType" class="inputs">
-                <option>1</option>
-                <option>2</option>
-            </select>
+            <select id="ddlType" class="inputs" ng-model="ctrl.product.TypeID" data-ng-options="type for type in ctrl.producttypeids"></select>
         </p>
         <p>
             Price:
         </p>
         <p>
-            <input id="txtPrice" type="text" class="inputs" />
+            <input id="txtPrice" type="text" class="inputs" ng-model="ctrl.product.Price" />
         </p>
         <p>
             Image:
@@ -51,32 +52,31 @@
              et HTTP GET REST kald til api/image.
              Dette kald håndteres af metoden "public List<string> Get()" i /Controllers/ImageController.cs -->
         <p>
-            <select id="ddlImage" class="inputs">
-                <option>1</option>
-                <option>2</option>
-            </select>
+            <select id="ddlImage" class="inputs" ng-model="ctrl.product.Image" data-ng-options="image for image in ctrl.productimages"></select>
         </p>
         <p>
             Description:
         </p>
         <p>
-            <input id="txtDescription" type="text" class="inputs" />
+            <input id="txtDescription" type="text" class="inputs" ng-model="ctrl.product.Description" />
         </p>
-         <!-- MVC JavaScript opgave ----
-              Ved tryk på nednestående knap skal der sendes en HTTP post til /api/product med JSON dataet på formen
-                 {
-                    "TypeID": 4,
-                    "Name": "Fuel Filters",
-                    "Price": 150.0,
-                    "Description": "bla bla bla",
-                    "Image": "Cylinder Heads.jpg"
-                }
-             I feltet lblResult skal der angives om det er gået godt eller ej -->
+        <!-- MVC JavaScript opgave ----
+             Ved tryk på nednestående knap skal der sendes en HTTP post til /api/product med JSON dataet på formen
+                {
+                   "TypeID": 4,
+                   "Name": "Fuel Filters",
+                   "Price": 150.0,
+                   "Description": "bla bla bla",
+                   "Image": "Cylinder Heads.jpg"
+               }
+            I feltet lblResult skal der angives om det er gået godt eller ej -->
         <p>
-            <input id="btnSubmit" type="button" value="Submit" />
+            <input id="btnSubmit" type="button" value="Submit" ng-click="ctrl.saveproduct()" />
         </p>
         <p>
-            <div id="lblResult"></div>
+            <div id="lblResult">{{ctrl.message
+}}</div>
         </p>
     </div>
 </body>
+</html>

@@ -1,4 +1,5 @@
-﻿(function () {
+﻿/// <reference path="Shoppingcart.js" />
+(function () {
     angular.module('Shoppingcart', [])
     .controller('ShoppingcartCtrl', ['$http', '$window', function ($http, $window) {
         var self = this;
