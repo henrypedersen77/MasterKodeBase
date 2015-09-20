@@ -36,7 +36,7 @@
                  Nedenstående dropdown kommer fra produkttype tabellen, og data skal hentes ved at udføre
                  et HTTP GET REST kald til api/producttypes.
                  Dette kald håndteres af metoden "public List<ProductType> Get()" i /Controllers/ProductTypeController.cs -->
-            <select id="ddlType" class="inputs" ng-model="ctrl.product.TypeID" data-ng-options="type for type in ctrl.producttypeids"></select>
+            <select id="ddlType" class="inputs" ng-model="ctrl.TypeID" data-ng-options="type.Name for type in ctrl.producttypes"></select>
         </p>
         <p>
             Price:
@@ -58,7 +58,9 @@
             Description:
         </p>
         <p>
-            <input id="txtDescription" type="text" class="inputs" ng-model="ctrl.product.Description" />
+            <!--<input id="txtDescription" type="text" class="inputs" ng-model="ctrl.product.Description" />-->
+            <textarea ng-model="ctrl.product.Description" rows=" 2" cols="20" id="ContentPlaceHolder1_txtDescription" class="inputs" style="height:74px;width:240px;" >
+            </textarea>
         </p>
         <!-- MVC JavaScript opgave ----
              Ved tryk på nednestående knap skal der sendes en HTTP post til /api/product med JSON dataet på formen
@@ -74,8 +76,7 @@
             <input id="btnSubmit" type="button" value="Submit" ng-click="ctrl.saveproduct()" />
         </p>
         <p>
-            <div id="lblResult">{{ctrl.message
-}}</div>
+            <div id="lblResult">{{ctrl.message}}</div>
         </p>
     </div>
 </body>
