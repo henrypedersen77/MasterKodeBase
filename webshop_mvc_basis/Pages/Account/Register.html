@@ -1,7 +1,8 @@
 ﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="Register_Module">
 <head>
     <title>Register</title>
-    
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -10,16 +11,17 @@
 
     <script src="/Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="/Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
-    <script src="/Scripts/Template.js"></script>  
+    <script src="/Scripts/Template.js"></script>
+    <script src="../../Frameworks/angular-1.4.5/angular.js"></script>
+    <script src="../../Scripts/Register.js"></script>
 </head>
-<body>
+<body ng-controller="Register_Controller as register_ctrl">
     <div id="header"></div> <!-- Template.js indsætter Template.html her -->
+    <!-- MVC JavaScript opgave ----
 
-    <!-- MVC JavaScript opgave ---- 
-        
-        Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework. 
-         
-        Ved tryk på Register knap skal der sendes en HTTP Post til url'en "/api/register" med JSON data på formen 
+        Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework.
+
+        Ved tryk på Register knap skal der sendes en HTTP Post til url'en "/api/register" med JSON data på formen
         {
             login: "hugo",
             password: "Hugo1977",
@@ -40,35 +42,36 @@
         <h4>Register a new user</h4>
         <hr />
         <p>
-            <div id="statusmessage"></div>
+            <div id="statusmessage">{{register_ctrl.result}}</div>
         </p>
 
         User name:<br />
-        <input id="txtUserName" type="text" class="inputs" /><br />
+        <input id="txtUserName" type="text" class="inputs" ng-model="user.UserName" /><br />
 
         Password:
         <br />
-        <input id="txtPassword" type="password" class="inputs" /><br />
+        <input id="txtPassword" type="password" class="inputs" ng-model="user.Password" /><br />
 
         Confirm password:
         <br />
-        <input id="txtConfirmPassword" type="password" class="inputs" /><br />
+        <input id="txtConfirmPassword" type="password" class="inputs" ng-model="user.ConfirmPassword" /><br />
 
         First Name:<br />
-        <input id="txtFirstName" type="text" class="inputs" /><br />
+        <input id="txtFirstName" type="text" class="inputs" ng-model="user.FirstName" /><br />
 
         Last Name:<br />
-        <input id="txtLastName" type="text" class="inputs" /><br />
+        <input id="txtLastName" type="text" class="inputs" ng-model="user.LastName" /><br />
 
         Address:<br />
-        <input id="txtAddress" type="text" class="inputs" /><br />
+        <input id="txtAddress" type="text" class="inputs" ng-model="user.Address" /><br />
 
         Postal Code:<br />
-        <input id="txtPostalCode" type="text" class="inputs" /><br />
+        <input id="txtPostalCode" type="text" class="inputs" ng-model="user.PostalCode" pattern="1234567890" /><br />
 
         <p>
-            <input id="btnRegister" type="button" value="Register" class="button" />
+            <input id="btnRegister" type="button" value="Register" class="button" ng-click="register_ctrl.add_user(user)" />
         </p>
     </div>
 
 </body>
+</html>

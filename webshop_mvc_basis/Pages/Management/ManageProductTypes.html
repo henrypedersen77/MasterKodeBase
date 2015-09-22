@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="ManagementProductTypes_Module">
 <head>
     <title>Manage types</title>
 
@@ -11,9 +11,11 @@
 
     <script src="/Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="/Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
-    <script src="/Scripts/Template.js"></script> 
+    <script src="/Scripts/Template.js"></script>
+    <script src="../../Frameworks/angular-1.4.5/angular.js"></script>
+    <script src="../../Scripts/ManagementProductTypes.js"></script>
 </head>
-<body>
+<body ng-controller="ManagementProductTypes_Controller as managementproducttypes_ctrl">
     <div id="header"></div> <!-- Template.js indsætter Template.html her -->
 
     <div id="content">
@@ -23,7 +25,7 @@
             Name:
         </p>
         <p>
-            <input id="txtName" type="text" class="inputs" /><br />
+            <input id="txtName" type="text" class="inputs" ng-model="managementproducttypes_ctrl.producttype.Name" />
         </p>
         <!-- MVC JavaScript opgave ----
           Ved tryk på nednestående knap skal der sendes en HTTP post til /api/producttypes med JSON dataet på formen
@@ -32,10 +34,10 @@
             }
          I feltet lblResult skal der angives om det er gået godt eller ej -->
         <p>
-            <input id="btnSubmit" type="button" value="Submit" />
+            <input id="btnSubmit" type="button" value="Submit" class=" button" ng-click="managementproducttypes_ctrl.Submit()" />
         </p>
         <p>
-            <div id="lblResult"></div>
+            <div id="lblResult">{{managementproducttypes_ctrl.result}}</div>
         </p>
     </div>
 </body>

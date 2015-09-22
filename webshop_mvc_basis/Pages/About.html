@@ -12,6 +12,8 @@
     <script src="../Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="../Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
     <script src="../Scripts/Template.js"></script>  
+    <script src="../Frameworks/angular-1.4.5/angular.js"></script>
+    <script src="../Scripts/About.js"></script>
 </head>
 <body>
     <div id="header"></div> <!-- Template.js indsætter Template.html her -->
@@ -19,12 +21,26 @@
     <div id="container">
         <div>
             <blockquote>
-                <p>
-                    "We know what we are, but not what we may be ."
-                </p>
-                <p>
-                    <small>Abraham Lincoln</small>
-                </p>
+
+
+                <div ng-app="About_Module" ng-controller="About_Controller as about_ctrl">
+
+                    <p>
+                        {{about_ctrl.Citat_Msg}} 
+                    </p>
+                    <p>
+                        <small>
+                            {{about_ctrl.Author_Msg}} 
+                            
+                        </small>
+                    </p>
+
+                    <br />
+
+                </div>
+
+
+
             </blockquote>
         </div>
     </div>

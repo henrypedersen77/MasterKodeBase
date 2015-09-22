@@ -1,7 +1,8 @@
 ﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="Shoppingcart_Module">
 <head>
     <title>Shopping Cart</title>
-    
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -10,9 +11,11 @@
 
     <script src="/Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="/Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
-    <script src="/Scripts/Template.js"></script>  
+    <script src="/Scripts/Template.js"></script>
+    <script src="../../Frameworks/angular-1.4.5/angular.js"></script>
+    <script src="../Scripts/Shoppingcart.js"></script>
 </head>
-<body>
+<body ng-controller="Shoppingcart_Controller as shoppingcart_ctrl">
     <div id="header"></div> <!-- Template.js indsætter Template.html her -->
 
     <div id="content">
@@ -22,9 +25,6 @@
                  Der skal laves en table per cart returneret fra HTTP get kaldet til /api/chart/{userId}/orders"-->
             <table class="CartTable">
                 <tr>
-                    <td rowspan="2" style="width:50px;">
-                        <input type="image" src="../Images/Products/Cylinder%20Heads.jpg" />
-                    </td>
                     <td align="left" style="width:350px;">
                         <h4>Product.Name</h4><br />
                         Item No: Product.ID<br />
@@ -34,56 +34,39 @@
                     <td>Quantity<hr /></td>
                     <td>Item Total<hr /></td>
 
-                     <!-- MVC JavaScript opgave ----
-                          Ved tryk på delete skal der sendes en HTTP Delete til /api/cart/{cartID} 
-                          + denne side skal opfriskes -->
-                    <td><a id="ContentPlaceHolder1_del8">Delete Item</a></td>
-                </tr>
-                <tr>
+                    <!-- MVC JavaScript opgave ----
+            Ved tryk på delete skal der sendes en HTTP Delete til /api/cart/{cartID}
+            + denne side skal opfriskes -->
                     <td></td>
-                    <td>Product.Price</td>
-                    <td>
+                    <!--ng-click="index_ctrl.url_redirect(list.ID)"-->
+                </tr>
+                <tr ng-repeat="list in shoppingcart_ctrl.items">
+                    <td align="left" style="width:350px;">
+                        <input type="image" ng-src="{{shoppingcart_ctrl.getImageUrl(list.Product.Image)}}" />
+                        <h4>{{list.Product.Name}}</h4><br />
+                        {{list.Product.ID}}<br />
+                        In Stock
+                    </td>
+                       <td>{{list.Product.Price}}</td>
+
                         <!-- MVC JavaScript opgave ----
-                             Rettes der i nedenstående amount, skal der sendes en HTTP post til /api/cart/{cartid}/amount med
-                             antal angivet i JSON dataet-->
-                        Amount
-                        <select>
-                            <option selected="selected" value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
-                        </select>
-                    </td>
-                    <td>Amoun * Product.Price</td>
-                    </td>
+        Rettes der i nedenstående amount, skal der sendes en HTTP post til /api/cart/{cartid}/amount med
+        antal angivet i JSON dataet-->
+                        <!--<select ng-change="test" ng-model=""
+                        </select>-->
+                    <td><select ng-model="list.Amount" data-ng-options="i for i in [1,2,3,4,5,6,7,8,9,10]" ng-change="shoppingcart_ctrl.updateItem(list)"></select></td>
+                    <td>{{list.Amount * list.Product.Price}}</td>
+                    <td><a id="ContentPlaceHolder1_del8" ng-click="shoppingcart_ctrl.deleteItem(list)">Delete Item</a></td>
                 </tr>
             </table>
-
         </div>
-
         <table>
             <tr>
                 <td>
                     <b>Total: </b>
                 </td>
                 <td>
-                    Sum af priserne på alle cart
+                    {{shoppingcart_ctrl.linetotal}}
                 </td>
             </tr>
 
@@ -92,7 +75,7 @@
                     <b>Vat: </b>
                 </td>
                 <td>
-                    subTotal * 0.21;
+                    {{shoppingcart_ctrl.vat}}
                 </td>
             </tr>
             <tr>
@@ -109,7 +92,7 @@
                     <b>Total Amount: </b>
                 </td>
                 <td>
-                    sum af priserne + shipping + vat
+                    {{shoppingcart_ctrl.cartamount}}
                 </td>
             </tr>
 
@@ -127,9 +110,9 @@
                                 {ID: 2}
                             ]
                     ID'erne angiver cart'sne ID'er.
-                    
+
                     Der skal sluttes af med at redirecte til Pages/Success.html -->
-                    <input type="submit" value="Check Out" id="ContentPlaceHolder1_btnCheckout" class="button" style="width:250px;" />
+                    <input id="ContentPlaceHolder1_btnCheckout" type="button" value="Check Out" class=" button" style="width:250px;" ng-click="shoppingcart_ctrl.checkout()" />
                 </td>
             </tr>
 
@@ -138,4 +121,5 @@
     </div>
 
 </body>
+</html>
 

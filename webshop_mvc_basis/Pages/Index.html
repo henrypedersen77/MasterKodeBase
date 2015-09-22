@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="Index_Module">
 <head>
     <title>Garage Manager</title>
 
@@ -11,28 +11,33 @@
 
     <script src="../Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="../Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
-    <script src="../Scripts/Template.js"></script>  
+    <script src="../Scripts/Template.js"></script>
+    <script src="../Frameworks/angular-1.4.5/angular.js"></script>
+    <script src="../Scripts/Index.js"></script>
 </head>
-<body>
+<body ng-controller="Index_Controller as index_ctrl">
     <div id="header"></div>  <!-- Template.js indsætter Template.html her -->
 
     <div id="ContentPlaceHolder1_pnlProducts">
-        <!-- MVC JavaScript opgave ---- 
+
+
+        <!-- MVC JavaScript opgave
              Der skal laves et div element per produkt, eller en række i et grid.
              Alle produkterne hentes fra databasen ved at udføre en HTTP GET REST kald til api/product.
-             Dette kald håndteres af metoden "public List<Product> Get()" i /Controllers/ProductController.cs 
+             Dette kald håndteres af metoden "public List<Product> Get()" i /Controllers/ProductController.cs
              Billedet sættes ved at sætte src til "../Content/Images/Products/" + billedes navn returneret fra ovenstående-->
-        <div>
-            <!-- MVC JavaScript opgave ---- 
-                 Ved klik på nedenstående billede skal der redirectes til siden /pages/product.html og det angivede
-                 Produkt skal vises på den side. -->
-            <input type="image" class="productImage" src="../Content/Images/Products/?.jpg"  />
-            <br />
-            <span class="productName">?</span>
-            <br />
-            <span class="productPrice">?</span>
-        </div>
-    </div>
 
+                <div ng-repeat="list in index_ctrl.items" class="item">
+
+                    <!-- MVC JavaScript opgave
+                    Ved klik på nedenstående billede skal der redirectes til siden /pages/product.html og det angivede
+                    Produkt skal vises på den side. -->
+                    <input type="image" class="productImage" ng-src="{{index_ctrl.getImageUrl(list.Image)}}" ng-click="index_ctrl.url_redirect(list.ID)" /> 
+                    <br />
+                    <span class="productName" ng-bind="list.Name"></span>
+                    <br />
+                    <span class="productPrice" ng-bind="list.Price">?</span>
+                </div>
+            </div>
 </body>
 </html>
