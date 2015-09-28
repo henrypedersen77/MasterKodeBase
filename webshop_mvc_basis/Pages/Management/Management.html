@@ -29,7 +29,7 @@
 
         <!-- MVC JavaScript opgave ----
              Nedenstående skal representere alle producter i databasen.
-             Alle produkterne hentes fra databasen ved at udføre en HTTP GET REST kald til api/product.
+             Alle produkterne hentes fra databasen ved at udføre en HTTP GET REST kald til /api/product.
              Dette kald håndteres af metoden "public List<Product> Get()" i /Controllers/ProductController.cs -->
         <table cellspacing="5" rules="all" border="1" id="ContentPlaceHolder1_grdProducts" style="width:100%;border-collapse:collapse;">
             <tr>
@@ -50,7 +50,7 @@
 
                 <!-- MVC JavaScript opgave ----
             Nedenstående knap sletter produktet repræsenteret ved rækken,
-            dette sker ved at sende en HTTP delete til api/product/[produktId],
+            dette sker ved at sende en HTTP delete til /api/product/[produktId],
             efterfølgende skal ovenstående tabel/grid reloades -->
                 <td><button>Delete</button></td>
 
@@ -71,7 +71,7 @@
 
         <!-- MVC JavaScript opgave ----
      Nedenstående skal representere alle produkttyper i databasen.
-     Alle produkttyper hentes fra databasen ved at udføre en HTTP GET REST kald til api/producttype.
+     Alle produkttyper hentes fra databasen ved at udføre en HTTP GET REST kald til /api/producttype.
      Dette kald håndteres af metoden "public List<ProductType> Get()" i /Controllers/ProductTypeController.cs -->
         <table cellspacing="5" rules="all" border="1" id="ContentPlaceHolder1_GridView2" style="width:100%;border-collapse:collapse;">
             <tr>
