@@ -1,7 +1,8 @@
 ﻿<!DOCTYPE html>
+<html>
 <head>
     <title>Shopping Cart</title>
-    
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -10,7 +11,7 @@
 
     <script src="/Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="/Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
-    <script src="/Scripts/Template.js"></script>  
+    <script src="/Scripts/Template.js"></script>
 </head>
 <body>
     <div id="header"></div> <!-- Template.js indsætter Template.html her -->
@@ -19,7 +20,7 @@
 
         <div id="ContentPlaceHolder1_pnlShoppingCart">
             <!-- MVC JavaScript opgave ----
-                 Der skal laves en table per cart returneret fra HTTP get kaldet til /api/chart/{userId}/orders"-->
+                 Der skal laves en table per cart returneret fra HTTP get kaldet til /api/cart/{ClientID}/orders -->
             <table class="CartTable">
                 <tr>
                     <td rowspan="2" style="width:50px;">
@@ -34,9 +35,9 @@
                     <td>Quantity<hr /></td>
                     <td>Item Total<hr /></td>
 
-                     <!-- MVC JavaScript opgave ----
-                          Ved tryk på delete skal der sendes en HTTP Delete til /api/cart/{cartID} 
-                          + denne side skal opfriskes -->
+                    <!-- MVC JavaScript opgave ----
+                         Ved tryk på delete skal der sendes en HTTP Delete til /api/cart/{cartID}
+                         + denne side skal opfriskes -->
                     <td><a id="ContentPlaceHolder1_del8">Delete Item</a></td>
                 </tr>
                 <tr>
@@ -127,7 +128,7 @@
                                 {ID: 2}
                             ]
                     ID'erne angiver cart'sne ID'er.
-                    
+
                     Der skal sluttes af med at redirecte til Pages/Success.html -->
                     <input type="submit" value="Check Out" id="ContentPlaceHolder1_btnCheckout" class="button" style="width:250px;" />
                 </td>
@@ -138,4 +139,4 @@
     </div>
 
 </body>
-
+</html>
