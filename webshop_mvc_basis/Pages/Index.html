@@ -12,27 +12,35 @@
     <script src="../Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="../Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
     <script src="../Scripts/Template.js"></script>  
+    <script src="../Frameworks/underscore-min.js"></script>
+    <script src="../Frameworks/backbone-min.js"></script>
 </head>
 <body>
     <div id="header"></div>  <!-- Template.js indsætter Template.html her -->
 
     <div id="ContentPlaceHolder1_pnlProducts">
-        <!-- MVC JavaScript opgave ---- 
+        <!-- MVC JavaScript opgave ----
              Der skal laves et div element per produkt, eller en række i et grid.
              Alle produkterne hentes fra databasen ved at udføre en HTTP GET REST kald til /api/product.
-             Dette kald håndteres af metoden "public List<Product> Get()" i /Controllers/ProductController.cs 
+             Dette kald håndteres af metoden "public List<Product> Get()" i /Controllers/ProductController.cs
              Billedet sættes ved at sætte src til "../Content/Images/Products/" + billedes navn returneret fra ovenstående-->
-        <div>
-            <!-- MVC JavaScript opgave ---- 
-                 Ved klik på nedenstående billede skal der redirectes til siden /pages/product.html og det angivede
-                 Produkt skal vises på den side. -->
-            <input type="image" class="productImage" src="../Content/Images/Products/?.jpg"  />
-            <br />
-            <span class="productName">?</span>
-            <br />
-            <span class="productPrice">?</span>
-        </div>
+        <script type="text/template" id="index-template">
+            <% _.each(allProducts.models, function(product) { %>
+            <div>
+                <!-- MVC JavaScript opgave ----
+                Ved klik på nedenstående billede skal der redirectes til siden /pages/product.html og det angivede
+                Produkt skal vises på den side. -->
+                <a href="Product.html#id=<%= product.get('ID') %>">
+                    <img id="productlink" type="image" class="productImage" src="<%= '../Content/Images/Products/' + product.get('Image') %>" />
+                </a>
+                <br />
+                <span class="productName"><%= product.get('Name') %></span>
+                <br />
+                <span class="productPrice"><%= product.get('Price') %></span>
+            </div>
+            <% }); %>
+        </script>
     </div>
-
+    <script src="../Scripts/Index.js"></script>
 </body>
 </html>
