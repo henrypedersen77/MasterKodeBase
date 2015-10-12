@@ -187,6 +187,7 @@
     <Content Include="Scripts\About.js" />
     <Content Include="Scripts\AdminAuthorization.js" />
     <Content Include="Scripts\Index.js" />
+    <Content Include="Scripts\Login.js" />
     <Content Include="Scripts\Product.js" />
     <Content Include="Scripts\Register.js" />
     <Content Include="Scripts\Template.js" />
