@@ -106,7 +106,6 @@ checkout = function () {
     var po = new app.PaidOrders();
     po.add(allOrders.toJSON()); //En kopi af allOrders
     po.save();
-
  };
 
  changeamount = function (cartid, value) {
