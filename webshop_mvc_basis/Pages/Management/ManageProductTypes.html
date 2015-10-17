@@ -12,6 +12,8 @@
     <script src="/Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="/Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
     <script src="/Scripts/Template.js"></script> 
+    <script src="/Frameworks/underscore-min.js"></script>
+    <script src="/Frameworks/backbone-min.js"></script>
 </head>
 <body>
     <div id="header"></div> <!-- Template.js indsætter Template.html her -->
@@ -19,26 +21,29 @@
     <!-- Det er kun brugeren med login=admin der kan tilgå Management siderne -->
 
     <div id="content">
-        <!-- MVC JavaScript opgave ----
+        <script type="text/template" id="producttype-template">
+            <!-- MVC JavaScript opgave ----
          Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework. -->
-        <p>
-            Name:
-        </p>
-        <p>
-            <input id="txtName" type="text" class="inputs" /><br />
-        </p>
-        <!-- MVC JavaScript opgave ----
+            <p>
+                Name:
+            </p>
+            <p>
+                <input id="txtName" type="text" class="inputs" value="<%=Name%>" /><br />
+            </p>
+            <!-- MVC JavaScript opgave ----
           Ved tryk på nednestående knap skal der sendes en HTTP post til /api/producttypes med JSON dataet på formen
             {
                 "Name": "Filters"
             }
          I feltet lblResult skal der angives om det er gået godt eller ej -->
-        <p>
-            <input id="btnSubmit" type="button" value="Submit" />
-        </p>
-        <p>
-            <div id="lblResult"></div>
-        </p>
+            <p>
+                <input data-id="<%=ID%>" id="btnSubmit" type="button" value="Submit" />
+            </p>
+            <p>
+                <div id="lblResult"></div>
+            </p>
+        </script>
     </div>
+    <script src="../../Scripts/ManageProductTypes.js"></script>
 </body>
 </html>
