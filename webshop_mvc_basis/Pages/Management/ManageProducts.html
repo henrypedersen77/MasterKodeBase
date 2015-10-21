@@ -12,75 +12,88 @@
     <script src="/Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="/Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
     <script src="/Scripts/Template.js"></script>
+    <script src="../../Frameworks/ember/js/libs/ember_1.13.js"></script>
+    <script src="../../Frameworks/ember/js/libs/ember-template-compiler_1.13.js"></script>
+    <script src="../../Scripts/ManageProducts.js"></script>
 </head>
 <body>
     <div id="header"></div> <!-- Template.js indsætter Template.html her -->
 
     <!-- Det er kun brugeren med login=admin der kan tilgå Management siderne -->
 
-    <div id="content">
-        <!-- MVC JavaScript opgave ----
-             Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework.
-             -->
-        <p>Name:</p>
-        <p>
-            <input id="txtName" type="text" class="inputs" />
-        </p>
-
-        <p>
-            Type:
-        </p>
-        <p>
+    <script type="text/x-handlebars" id="index">
+        <div id="content">
             <!-- MVC JavaScript opgave ----
-                 Nedenstående dropdown kommer fra produkttype tabellen, og data skal hentes ved at udføre
-                 et HTTP GET REST kald til /api/producttypes.
-                 Dette kald håndteres af metoden "public List<ProductType> Get()" i /Controllers/ProductTypeController.cs -->
-            <select id="ddlType" class="inputs">
-                <option>1</option>
-                <option>2</option>
-            </select>
-        </p>
-        <p>
-            Price:
-        </p>
-        <p>
-            <input id="txtPrice" type="text" class="inputs" />
-        </p>
-        <p>
-            Image:
-        </p>
-        <!-- MVC JavaScript opgave ----
-             Nedenstående dropdown kommer fra produktbilledefilerne på serveren, og filnavne på disse hentes ved at udføre
-             et HTTP GET REST kald til /api/image.
-             Dette kald håndteres af metoden "public List<string> Get()" i /Controllers/ImageController.cs -->
-        <p>
-            <select id="ddlImage" class="inputs">
-                <option>1</option>
-                <option>2</option>
-            </select>
-        </p>
-        <p>
-            Description:
-        </p>
-        <p>
-            <textarea rows=" 2" cols="20" id="ContentPlaceHolder1_txtDescription" class="inputs" style="height:74px;width:240px;"></textarea>
-        </p>
-        <!-- MVC JavaScript opgave ----
-             Ved tryk på nednestående knap skal der sendes en HTTP post til /api/product med JSON dataet på formen
-                {
-                   "TypeID": 4,
-                   "Name": "Fuel Filters",
-                   "Price": 150.0,
-                   "Description": "bla bla bla",
-                   "Image": "Cylinder Heads.jpg"
-               }
-            I feltet lblResult skal der angives om det er gået godt eller ej -->
-        <p>
-            <input id="btnSubmit" type="button" value="Submit" />
-        </p>
-        <p>
-            <div id="lblResult"></div>
-        </p>
-    </div>
+                 Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework.
+                 -->
+            <p>Name:</p>
+            <p>
+                {{input type="text" value=model.product.Name}}
+            </p>
+
+            <p>
+                Type:
+            </p>
+            <p>
+                <!-- MVC JavaScript opgave ----
+                     Nedenstående dropdown kommer fra produkttype tabellen, og data skal hentes ved at udføre
+                     et HTTP GET REST kald til /api/producttypes.
+                     Dette kald håndteres af metoden "public List<ProductType> Get()" i /Controllers/ProductTypeController.cs -->
+                {{view "select"
+                content=model.producttypes
+                optionValuePath="content.ID"
+                optionLabelPath="content.Name"
+                valueBinding="model.product.TypeID"
+                }}
+            </p>
+            <p>
+                Price:
+            </p>
+            <p>
+                {{input type="text" class="inputs" value=model.product.Price}}
+            </p>
+            <p>
+                Image:
+            </p>
+            <!-- MVC JavaScript opgave ----
+                 Nedenstående dropdown kommer fra produktbilledefilerne på serveren, og filnavne på disse hentes ved at udføre
+                 et HTTP GET REST kald til /api/image.
+                 Dette kald håndteres af metoden "public List<string> Get()" i /Controllers/ImageController.cs -->
+            <p>
+                {{view "select"
+                content=model.images
+                optionValuePath="content.Name"
+                optionLabelPath="content.Name"
+                selectionBinding="model.product.Image"
+                valueBinding="model.product.Image"
+                }}
+
+            </p>
+            <p>
+                Description:
+            </p>
+            <p>
+                {{input type="text" class="inputs" value=model.product.Description}}
+            </p>
+            <!-- MVC JavaScript opgave ----
+                 Ved tryk på nednestående knap skal der sendes en HTTP post til /api/product med JSON dataet på formen
+                    {
+                       "TypeID": 4,
+                       "Name": "Fuel Filters",
+                       "Price": 150.0,
+                       "Description": "bla bla bla",
+                       "Image": "Cylinder Heads.jpg"
+                   }
+                I feltet lblResult skal der angives om det er gået godt eller ej -->
+            <p>
+                <a href="#" {{action "submit" model.product.ID}}>
+                    <input id="btnSubmit" type="button" value="Submit" />
+                </a>
+            </p>
+            <p>
+                <div id="lblResult"></div>
+            </p>
+        </div>
+    </script>
 </body>
 </html>

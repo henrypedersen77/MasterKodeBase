@@ -12,33 +12,40 @@
     <script src="/Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="/Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
     <script src="/Scripts/Template.js"></script> 
+    <script src="../../Frameworks/ember/js/libs/ember_1.13.js"></script>
+    <script src="../../Frameworks/ember/js/libs/ember-template-compiler_1.13.js"></script>
+    <script src="../../Scripts/ManageProductTypes.js"></script>
 </head>
 <body>
     <div id="header"></div> <!-- Template.js indsætter Template.html her -->
 
     <!-- Det er kun brugeren med login=admin der kan tilgå Management siderne -->
 
-    <div id="content">
-        <!-- MVC JavaScript opgave ----
-         Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework. -->
-        <p>
-            Name:
-        </p>
-        <p>
-            <input id="txtName" type="text" class="inputs" /><br />
-        </p>
-        <!-- MVC JavaScript opgave ----
-          Ved tryk på nednestående knap skal der sendes en HTTP post til /api/producttypes med JSON dataet på formen
-            {
-                "Name": "Filters"
-            }
-         I feltet lblResult skal der angives om det er gået godt eller ej -->
-        <p>
-            <input id="btnSubmit" type="button" value="Submit" />
-        </p>
-        <p>
-            <div id="lblResult"></div>
-        </p>
-    </div>
+    <script type="text/x-handlebars" id="index">
+        <div id="content">
+            <!-- MVC JavaScript opgave ----
+             Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework. -->
+            <p>
+                Name:
+            </p>
+            <p>
+                {{input type="text" value=model.producttype.Name}}
+            </p>
+            <!-- MVC JavaScript opgave ----
+              Ved tryk på nednestående knap skal der sendes en HTTP post til /api/producttypes med JSON dataet på formen
+                {
+                    "Name": "Filters"
+                }
+             I feltet lblResult skal der angives om det er gået godt eller ej -->
+            <p>
+                <a href="#" {{action "submit" model.producttype.ID}}>
+                    <input id="btnSubmit" type="button" value="Submit" />
+                </a>
+            </p>
+            <p>
+                <div id="lblResult">{{model.statusmessage}}</div>
+            </p>
+        </div>
+    </script>
 </body>
 </html>

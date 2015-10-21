@@ -6,136 +6,119 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="/Styles/StyleSheet.css" rel="stylesheet" />
-    <link href="/Frameworks/bootstrap-3.3.5-dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="../Styles/StyleSheet.css" rel="stylesheet" />
+    <link href="../Frameworks/bootstrap-3.3.5-dist/css/bootstrap.css" rel="stylesheet" />
 
-    <script src="/Frameworks/jQuery/jquery-2.1.4.js"></script>
-    <script src="/Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
-    <script src="/Scripts/Template.js"></script>
+    <script src="../Frameworks/jQuery/jquery-2.1.4.js"></script>
+    <script src="../Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
+    <script src="../Scripts/Template.js"></script>
+    <script src="../Frameworks/ember/js/libs/ember_1.13.js"></script>
+    <script src="../Frameworks/ember/js/libs/ember-template-compiler_1.13.js"></script>
+    <script src="../Scripts/Shopingcart.js"></script>
 </head>
 <body>
     <div id="header"></div> <!-- Template.js indsætter Template.html her -->
+    <script type="text/x-handlebars" id="index">
+        <div id="content">
 
-    <div id="content">
+            <div id="ContentPlaceHolder1_pnlShoppingCart">
+                <!-- MVC JavaScript opgave ----
+                     Der skal laves en table per cart returneret fra HTTP get kaldet til /api/cart/{ClientID}/orders -->
+                <table class="CartTable">
+                    <tr>
+                        <td align="left" style="width:350px;">
+                            <h4>Product.Name</h4><br />
+                            Item No: Product.ID<br />
+                            In Stock
+                        </td>
+                        <td>Unit Price<hr /></td>
+                        <td>Quantity<hr /></td>
+                        <td>Item Total<hr /></td>
 
-        <div id="ContentPlaceHolder1_pnlShoppingCart">
-            <!-- MVC JavaScript opgave ----
-                 Der skal laves en table per cart returneret fra HTTP get kaldet til /api/cart/{ClientID}/orders -->
-            <table class="CartTable">
-                <tr>
-                    <td rowspan="2" style="width:50px;">
-                        <input type="image" src="../Images/Products/Cylinder%20Heads.jpg" />
-                    </td>
-                    <td align="left" style="width:350px;">
-                        <h4>Product.Name</h4><br />
-                        Item No: Product.ID<br />
-                        In Stock
-                    </td>
-                    <td>Unit Price<hr /></td>
-                    <td>Quantity<hr /></td>
-                    <td>Item Total<hr /></td>
+                        <td></td>
+                    </tr>
 
-                    <!-- MVC JavaScript opgave ----
-                         Ved tryk på delete skal der sendes en HTTP Delete til /api/cart/{cartID}
-                         + denne side skal opfriskes -->
-                    <td><a id="ContentPlaceHolder1_del8">Delete Item</a></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>Product.Price</td>
-                    <td>
+                    {{#each model.cart as |item|}}
+                    <tr>
+                        <td align="left" style="width:350px;">
+                            <input type="image" src="{{item.ImageUrl}}" />
+                            <h4>{{item.Name}}</h4><br />
+                            Item No: {{item.ProductID}}<br />
+                            In Stock
+                        </td>
+                        <td>{{item.Price}}<hr /></td>
+                        <td>{{view "select" content=model.quantities selectionBinding=item.Amount }}<hr /></td>
+                        <td>{{item.LineAmount}}<hr /></td>
+
                         <!-- MVC JavaScript opgave ----
-                             Rettes der i nedenstående amount, skal der sendes en HTTP post til /api/cart/{cartid}/amount med
-                             antal angivet i JSON dataet-->
-                        Amount
-                        <select>
-                            <option selected="selected" value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
-                        </select>
+                             Ved tryk på delete skal der sendes en HTTP Delete til /api/cart/{cartID}
+                             + denne side skal opfriskes -->
+                        <td><a href="#" {{action "deletecart" item.ID}}>Delete Item</a></td>
+                    </tr>
+                    {{/each}}
+                </table>
+
+            </div>
+
+            <table>
+                <tr>
+                    <td>
+                        <b>Total: </b>
                     </td>
-                    <td>Amoun * Product.Price</td>
+                    <td>
+                        {{model.totallineamount}}
+                    </td>
                 </tr>
+
+                <tr>
+                    <td>
+                        <b>Vat: </b>
+                    </td>
+                    <td>
+                        {{model.vat}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Shipping: </b>
+                    </td>
+                    <td>
+                        £ 15
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <b>Total Amount: </b>
+                    </td>
+                    <td>
+                        {{model.totalamount}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <br />
+                        <!-- MVC JavaScript opgave ----
+                             Ved tryk på continue shopping redirectes der til "Pages/Index.html" -->
+                        <a id="ContentPlaceHolder1_LinkButton1" href="Index.html">Continue Shopping</a> &nbsp;&nbsp; or
+
+                        <!-- MVC JavaScript opgave ----
+                             Ved tryk på checkout skal der sendes en HTTP post til /api/cart/paid, med JSON data på formen
+                                [
+                                    {ID: 1},
+                                    {ID: 2}
+                                ]
+                        ID'erne angiver cart'sne ID'er.
+
+                        Der skal sluttes af med at redirecte til Pages/Success.html -->
+                        <input type="submit" value="Check Out" id="ContentPlaceHolder1_btnCheckout" class="button" style="width:250px;" />
+                    </td>
+                </tr>
+
             </table>
 
         </div>
-
-        <table>
-            <tr>
-                <td>
-                    <b>Total: </b>
-                </td>
-                <td>
-                    Sum af priserne på alle cart
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <b>Vat: </b>
-                </td>
-                <td>
-                    subTotal * 0.21;
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <b>Shipping: </b>
-                </td>
-                <td>
-                    £ 15
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <b>Total Amount: </b>
-                </td>
-                <td>
-                    sum af priserne + shipping + vat
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <br />
-                    <!-- MVC JavaScript opgave ----
-                         Ved tryk på continue shopping redirectes der til "Pages/Index.html" -->
-                    <a id="ContentPlaceHolder1_LinkButton1" href="Index.html">Continue Shopping</a> &nbsp;&nbsp; or
-
-                    <!-- MVC JavaScript opgave ----
-                         Ved tryk på checkout skal der sendes en HTTP post til /api/cart/paid, med JSON data på formen
-                            [
-                                {ID: 1},
-                                {ID: 2}
-                            ]
-                    ID'erne angiver cart'sne ID'er.
-
-                    Der skal sluttes af med at redirecte til Pages/Success.html -->
-                    <input type="submit" value="Check Out" id="ContentPlaceHolder1_btnCheckout" class="button" style="width:250px;" />
-                </td>
-            </tr>
-
-        </table>
-
-    </div>
-
+    </script>
 </body>
 </html>

@@ -12,22 +12,29 @@
     <script src="../Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="../Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
     <script src="../Scripts/Template.js"></script>  
+    <script src="../Frameworks/ember/js/libs/ember-template-compiler-2.0.1.js"></script>
+    <script src="../Frameworks/ember/js/libs/ember.min.js"></script>
+    <script src="../Scripts/About.js"></script>
 </head>
 <body>
     <div id="header"></div> <!-- Template.js indsætter Template.html her -->
-
     <div id="container">
         <div>
             <blockquote>
-                <p>
-                    "We know what we are, but not what we may be ."
-                </p>
-                <p>
-                    <small>Abraham Lincoln</small>
-                </p>
+                <script type="text/x-handlebars">
+                    <p>
+                        {{Quote}}
+                    </p>
+                    <p>
+                        <small>{{Author}}</small>
+                    </p>
+                </script>
             </blockquote>
         </div>
     </div>
 </body>
 </html>
+
+
+
 

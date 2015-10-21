@@ -28,6 +28,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -156,6 +157,25 @@
     <Content Include="Frameworks\bootstrap-3.3.5-dist\js\bootstrap.js" />
     <Content Include="Frameworks\bootstrap-3.3.5-dist\js\bootstrap.min.js" />
     <Content Include="Frameworks\bootstrap-3.3.5-dist\js\npm.js" />
+    <Content Include="Frameworks\ember\css\normalize.css" />
+    <Content Include="Frameworks\ember\css\style.css" />
+    <Content Include="Frameworks\ember\index.html" />
+    <Content Include="Frameworks\ember\js\app.js" />
+    <Content Include="Frameworks\ember\js\libs\ember-template-compiler_1.13.js" />
+    <Content Include="Frameworks\ember\js\libs\ember_1.13.js" />
+    <Content Include="Frameworks\ember\js\libs\handlebars-v4.0.2.js" />
+    <Content Include="Frameworks\ember\js\libs\ember-2.0.1.debug.js" />
+    <Content Include="Frameworks\ember\js\libs\ember-data.js" />
+    <Content Include="Frameworks\ember\js\libs\ember-template-compiler-2.0.1.js" />
+    <Content Include="Frameworks\ember\js\libs\ember-template-compiler.js" />
+    <Content Include="Frameworks\ember\js\libs\ember.js" />
+    <Content Include="Frameworks\ember\js\libs\ember.min.js" />
+    <Content Include="Frameworks\ember\js\libs\jquery-1.10.2.js" />
+    <Content Include="Frameworks\ember\tests\runner.css" />
+    <Content Include="Frameworks\ember\tests\runner.js" />
+    <Content Include="Frameworks\ember\tests\tests.js" />
+    <Content Include="Frameworks\ember\tests\vendor\qunit-1.12.0.css" />
+    <Content Include="Frameworks\ember\tests\vendor\qunit-1.12.0.js" />
     <Content Include="Frameworks\jQuery\jquery-2.1.4.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Images\BannerCar.jpg" />
@@ -182,6 +202,15 @@
     <Content Include="Pages\Template.html" />
     <Content Include="Pages\TemplateLogin.html" />
     <Content Include="Pages\TemplateLogout.html" />
+    <Content Include="Scripts\ManageProducts.js" />
+    <Content Include="Scripts\Management.js" />
+    <Content Include="Scripts\ManageProductTypes.js" />
+    <Content Include="Scripts\Shopingcart.js" />
+    <Content Include="Scripts\Product.js" />
+    <Content Include="Scripts\Login.js" />
+    <Content Include="Scripts\Register.js" />
+    <Content Include="Scripts\Index.js" />
+    <Content Include="Scripts\About.js" />
     <Content Include="Scripts\AdminAuthorization.js" />
     <Content Include="Scripts\Template.js" />
     <Content Include="Styles\StyleSheet.css" />
@@ -214,6 +243,8 @@
     <Content Include="Frameworks\bootstrap-3.3.5-dist\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Frameworks\bootstrap-3.3.5-dist\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Frameworks\bootstrap-3.3.5-dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Frameworks\ember\CODE_OF_CONDUCT.md" />
+    <Content Include="Frameworks\ember\README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
