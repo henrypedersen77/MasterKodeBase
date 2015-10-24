@@ -11,23 +11,35 @@
 
     <script src="../Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="../Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
-    <script src="../Scripts/Template.js"></script>  
-</head>
-<body>
-    <div id="header"></div> <!-- Template.js indsætter Template.html her -->
+    <script src="../Scripts/Template.js"></script>
 
-    <div id="container">
+    <script src="../Frameworks/ember-template-compiler.js"></script>
+    <script src="../Frameworks/ember.debug.js"></script>
+    <script src="../Frameworks/ember-data.js"></script>
+
+    <script src="../Scripts/about.js"></script>
+</head>
+<body id="ember-app">
+    <script type="text/x-handlebars" data-template-name="application">
+        <div id="header"></div> <!-- Template.js indsætter Template.html her -->
+
+        <div id="container">
+            {{outlet}}
+        </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="index">
         <div>
             <blockquote>
                 <p>
-                    "We know what we are, but not what we may be ."
+                   {{model.qoute}}<!--"We know what we are, but not what we may be ."-->
                 </p>
                 <p>
-                    <small>Abraham Lincoln</small>
+                    <small>{{model.author}}<</small><!--<small>Abraham Lincoln</small>-->
                 </p>
             </blockquote>
         </div>
-    </div>
+    </script>
 </body>
 </html>
 

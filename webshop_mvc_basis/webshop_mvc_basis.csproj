@@ -156,6 +156,9 @@
     <Content Include="Frameworks\bootstrap-3.3.5-dist\js\bootstrap.js" />
     <Content Include="Frameworks\bootstrap-3.3.5-dist\js\bootstrap.min.js" />
     <Content Include="Frameworks\bootstrap-3.3.5-dist\js\npm.js" />
+    <Content Include="Frameworks\ember-data.js" />
+    <Content Include="Frameworks\ember-template-compiler.js" />
+    <Content Include="Frameworks\ember.debug.js" />
     <Content Include="Frameworks\jQuery\jquery-2.1.4.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Images\BannerCar.jpg" />
@@ -182,6 +185,7 @@
     <Content Include="Pages\Template.html" />
     <Content Include="Pages\TemplateLogin.html" />
     <Content Include="Pages\TemplateLogout.html" />
+    <Content Include="Scripts\about.js" />
     <Content Include="Scripts\AdminAuthorization.js" />
     <Content Include="Scripts\Template.js" />
     <Content Include="Styles\StyleSheet.css" />
