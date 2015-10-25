@@ -148,6 +148,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Frameworks\backbone\backbone-min.js" />
+    <Content Include="Frameworks\backbone\underscore-min.js" />
     <Content Include="Frameworks\bootstrap-3.3.5-dist\css\bootstrap-theme.css" />
     <Content Include="Frameworks\bootstrap-3.3.5-dist\css\bootstrap-theme.min.css" />
     <Content Include="Frameworks\bootstrap-3.3.5-dist\css\bootstrap.css" />
@@ -182,6 +184,7 @@
     <Content Include="Pages\Template.html" />
     <Content Include="Pages\TemplateLogin.html" />
     <Content Include="Pages\TemplateLogout.html" />
+    <Content Include="Scripts\About.js" />
     <Content Include="Scripts\AdminAuthorization.js" />
     <Content Include="Scripts\Template.js" />
     <Content Include="Styles\StyleSheet.css" />
