@@ -12,27 +12,41 @@
     <script src="../Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="../Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
     <script src="../Scripts/Template.js"></script>  
-</head>
-<body>
-    <div id="header"></div>  <!-- Template.js indsætter Template.html her -->
 
-    <div id="ContentPlaceHolder1_pnlProducts">
-        <!-- MVC JavaScript opgave ---- 
-             Der skal laves et div element per produkt, eller en række i et grid.
-             Alle produkterne hentes fra databasen ved at udføre en HTTP GET REST kald til /api/product.
-             Dette kald håndteres af metoden "public List<Product> Get()" i /Controllers/ProductController.cs 
-             Billedet sættes ved at sætte src til "../Content/Images/Products/" + billedes navn returneret fra ovenstående-->
-        <div>
-            <!-- MVC JavaScript opgave ---- 
-                 Ved klik på nedenstående billede skal der redirectes til siden /pages/product.html og det angivede
-                 Produkt skal vises på den side. -->
-            <input type="image" class="productImage" src="../Content/Images/Products/?.jpg"  />
-            <br />
-            <span class="productName">?</span>
-            <br />
-            <span class="productPrice">?</span>
+    <script src="../Frameworks/ember-template-compiler.js"></script>
+    <script src="../Frameworks/ember.debug.js"></script>
+    <script src="../Frameworks/ember-data.js"></script>
+
+    <script src="../Scripts/index.js"></script>
+</head>
+<body id="ember-app">
+    <div id="header"></div> <!-- Template.js indsætter Template.html her -->
+
+    <script type="text/x-handlebars" data-template-name="application"> 
+        <div id="ContentPlaceHolder1_pnlProducts">
+            {{outlet}}
         </div>
-    </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="index">
+        <!-- MVC JavaScript opgave ----
+         Der skal laves et div element per produkt, eller en række i et grid.
+         Alle produkterne hentes fra databasen ved at udføre en HTTP GET REST kald til /api/product.
+         Dette kald håndteres af metoden "public List<Product> Get()" i /Controllers/ProductController.cs
+         Billedet sættes ved at sætte src til "../Content/Images/Products/" + billedes navn returneret fra ovenstående-->
+        {{#each model as |product|}}
+        <div>
+            <!-- MVC JavaScript opgave ----
+             Ved klik på nedenstående billede skal der redirectes til siden /pages/product.html og det angivede
+             Produkt skal vises på den side. -->
+            <input type="image" class="productImage" src={{product.image}} {{action "productView" product.id}}/>
+            <br />
+            <span class="productName">{{product.name}}</span>
+            <br />
+            <span class="productPrice">{{product.price}}</span>
+        </div>
+        {{/each}}
+    </script>
 
 </body>
 </html>

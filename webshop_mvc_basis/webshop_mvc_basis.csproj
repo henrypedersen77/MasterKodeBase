@@ -187,6 +187,7 @@
     <Content Include="Pages\TemplateLogout.html" />
     <Content Include="Scripts\about.js" />
     <Content Include="Scripts\AdminAuthorization.js" />
+    <Content Include="Scripts\index.js" />
     <Content Include="Scripts\Template.js" />
     <Content Include="Styles\StyleSheet.css" />
     <Content Include="Web.config">
@@ -249,7 +250,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>4170</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:3218/</IISUrl>
+          <IISUrl>http://localhost:1977/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
