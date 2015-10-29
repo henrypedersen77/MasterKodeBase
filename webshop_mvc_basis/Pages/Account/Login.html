@@ -12,8 +12,14 @@
     <script src="/Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="/Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
     <script src="/Scripts/Template.js"></script>
+
+    <script src="/Frameworks/ember-template-compiler.js"></script>
+    <script src="/Frameworks/ember.debug.js"></script>
+    <script src="/Frameworks/ember-data.js"></script>
+
+    <script src="../../Scripts/login.js"></script>
 </head>
-<body>
+<body id="ember-app">
     <div id="header"></div> <!-- Template.js indsætter Template.html her -->
     <!-- MVC JavaScript opgave ----
 
@@ -28,19 +34,29 @@
 
         Hvis Post'en returnere ok, så redirect til /Pages/index.html
         Ellers bliv på login siden og skriv en fejlbesked til brugeren. -->
-    <div id="content">
-        <h4>Log In</h4><hr />
+    <script type="text/x-handlebars" data-template-name="application">
+        <div id="content">
+            {{outlet}}
+        </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="index">
+        <h4>Log In</h4>
+        <hr />
         <p>
-            <div id="statusmessage"></div>
+            <div id="statusmessage">{{statusmessage}}</div>
         </p>
-        User name:<br />
-        <input id="txtUserName" type="text" class="inputs" /><br />
+        User name:
+        <br />
+        {{input id="login" value=login type="text" class="inputs"}}
+        <br />
 
         Password:
         <br />
-        <input id="txtPassword" type="password" class="inputs" /><br />
+        {{input id="txtPassword" type="password" class="inputs" value=password}}
+        <br />
 
-        <input id="btnLogin" type="button" value="Log in" class="button" />
-    </div>
+        <input id="btnLogin" type="button" value="Log in" class="button" {{action "loginUser"}} />
+    </script>
 </body>
 </html>
