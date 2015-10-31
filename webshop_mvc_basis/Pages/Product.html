@@ -12,28 +12,40 @@
     <script src="../Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="../Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
     <script src="../Scripts/Template.js"></script>
+
+    <script src="/Frameworks/ember-template-compiler.js"></script>
+    <script src="/Frameworks/ember.debug.js"></script>
+    <script src="/Frameworks/ember-data.js"></script>
+
+    <script src="../Scripts/product.js"></script>
 </head>
-<body>
+<body id="ember-app">
     <div id="header"></div> <!-- Template.js indsætter Template.html her -->
+    <script type="text/x-handlebars" data-template-name="application">
+        <div id="container">
+            {{outlet}}
+        </div>
+    </script>
 
-    <div id="container">
-        <!-- MVC JavaScript opgave ----
-         Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework.
-         Dvs. det pågældende produkt skal loades fra databasen og vises i nednestående html elementer.
 
-         I url'en angives det produkt brugeren vil se, ex.: http://localhost:1342/Pages/Product.html?id=15
-         I ovenstående er det produkt med id 15 der skal loades og vises på siden.
-        -->
+    <!-- MVC JavaScript opgave ----
+     Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework.
+     Dvs. det pågældende produkt skal loades fra databasen og vises i nednestående html elementer.
+
+     I url'en angives det produkt brugeren vil se, ex.: http://localhost:1342/Pages/Product.html?id=15
+     I ovenstående er det produkt med id 15 der skal loades og vises på siden.
+    -->
+    <script type="text/x-handlebars" data-template-name="index">
         <div>
-            <img src="imgProduct" class="detailsImage" />
+            <img src={{model.image}} class="detailsImage" />
             <h2>
-                <label id="lblTitle"></label>
+                <label id="lblTitle">{{model.name}}</label>
             </h2>
         </div>
         <div>
-            <label id="lblDescription" class="detailsDescription"></label>
+            <label id="lblDescription" class="detailsDescription">{{model.description}}</label>
             <hr />
-            <label id="lblPrice" class=" detailsPrice"></label><br />
+            <label id="lblPrice" class=" detailsPrice">{{model.price}}</label><br />
             Quantity:<select id="ddlAmount">
                 <option>1</option>
                 <option>2</option>
@@ -52,22 +64,22 @@
                 ClientID findes ved at lave en HTTP get til /api/login, Client id står så i det returenerede GUID felt.
                 Hvis der returees en HTTP 400 fejlbesked, så er bruger ikke logget ind, og så skal lblResult udfyldes
                 med beskeden "Please log in to order items" -->
-            <input id="btnAdd" type="button" value="Add Product" class=" button" />
+            <input id="btnAdd" type="button" value="Add Product" class=" button" {{action "addProduct"}} />
             <br />
 
             <!-- MVC JavaScript opgave ----
                  Efter klik på Add Product knappen, skal beskeden "Order was succesfully inserted" stå angivet i nedenstående label -->
-            <label id="lblResult"></label>
+            <label id="lblResult">{{statusmessage}}</label>
         </div>
         <div>
             Product No: <br />
-            <label id="lblItemNr" style="font-style: italic"></label>
+            <label id="lblItemNr" style="font-style: italic">{{model.id}}</label>
         </div>
 
         <!-- Nedenstående felt lblAvailable bindes der ikke til, den blev heller ikke anvedt i tutorialen. -->
         <div class=" auto-style2">
             <label id="lblAvailable" class="productPrice">Available!</label>
         </div>
-    </div>
+    </script>
 </body>
 </html>

@@ -6,11 +6,11 @@ app.ProductAdapter = DS.JSONAPIAdapter.extend({
 });
 
 app.Product = DS.Model.extend({
-    name: DS.attr('string'),
-    description: DS.attr('string'),
-    image: DS.attr('string'),
-    price: DS.attr('number'),
-    type_id: DS.attr('number')
+        name: DS.attr('string'),
+        description: DS.attr('string'),
+        image: DS.attr('string'),
+        price: DS.attr('number'),
+        type_id: DS.attr('number')
     }
 );
 
@@ -46,7 +46,7 @@ app.IndexRoute = Ember.Route.extend({
 app.IndexController = Ember.Controller.extend({
     actions: {
         productView: function(id) {
-            window.location.replace("/Pages/Product.html/" + id); //Da denne web-side ikke er en SPA, så mistes browser historiken her.
+            window.location.replace("/Pages/Product.html?id=" + id); //Da denne web-side ikke er en SPA, så mistes browser historiken her.
         }
     }
 });
