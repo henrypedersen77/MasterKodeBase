@@ -14,17 +14,27 @@
 
     <script src="/Scripts/AdminAuthorization.js"></script>
     <script src="/Scripts/Template.js"></script>
-</head>
-<body>
-    <div id="header"></div> <!-- Template.js indsætter Template.html her -->
 
+    <script src="/Frameworks/ember-template-compiler.js"></script>
+    <script src="/Frameworks/ember.debug.js"></script>
+    <script src="/Frameworks/ember-data.js"></script>
+
+    <script src="../../Scripts/management.js"></script>
+</head>
+<body id="ember-app">
+    <div id="header"></div> <!-- Template.js indsætter Template.html her -->
     <!-- Det er kun brugeren med login=admin der kan tilgå Management siderne -->
 
-    <div id="content">
+    <script type="text/x-handlebars" data-template-name="application">
+        <div id="content">
+            {{outlet}}
+        </div>
+    </script>
 
+    <script type="text/x-handlebars" data-template-name="index">
         <!-- MVC JavaScript opgave ----
              Nedensående knap skal redirecte til siden "/Pages/Management/ManageProducts.html" -->
-        <input id="btnAddNewProduct" type="button" value="Add new Product" class=" button" />
+        <input id="btnAddNewProduct" type="button" value="Add new Product" class=" button" {{action "addProduct"}} />
         <p style="clear: both"></p>
 
         <!-- MVC JavaScript opgave ----
@@ -41,38 +51,40 @@
                 <th></th>
                 <th></th>
             </tr>
+            {{#each model.products as |p index|}}
             <tr>
-                <td id="ID">{{p.ID}}</td>
-                <td id="TypeID">{{p.TypeID}}</td>
-                <td id="Name">{{p.Name}}</td>
-                <td id="Price">{{p.Price}}</td>
-                <td id="Description">{{p.Description}}</td>
+                <td id="ID">{{p.id}}</td>
+                <td id="TypeID">{{p.typeid}}</td>
+                <td id="Name">{{p.name}}</td>
+                <td id="Price">{{p.price}}</td>
+                <td id="Description">{{p.description}}</td>
 
                 <!-- MVC JavaScript opgave ----
-            Nedenstående knap sletter produktet repræsenteret ved rækken,
-            dette sker ved at sende en HTTP delete til /api/product/[produktId],
-            efterfølgende skal ovenstående tabel/grid reloades -->
-                <td><button>Delete</button></td>
+                Nedenstående knap sletter produktet repræsenteret ved rækken,
+                dette sker ved at sende en HTTP delete til /api/product/[produktId],
+                efterfølgende skal ovenstående tabel/grid reloades -->
+                <td><button {{action "deleteProduct" p.id}}>Delete</button></td>
 
                 <!-- MVC JavaScript opgave ----
-            Nedenstående knap redigere produktet repræsenteret ved rækken,
-            dette gøres ved at redirecte til siden pages/management/ManageProduct med det valgte produkt -->
-                <td><button>Edit</button></td>
+                Nedenstående knap redigere produktet repræsenteret ved rækken,
+                dette gøres ved at redirecte til siden pages/management/ManageProduct med det valgte produkt -->
+                <td><button {{action "editProduct" p.id}}>Edit</button></td>
             </tr>
+            {{/each}}
         </table>
         <br />
 
         <!-- MVC JavaScript opgave ----
          Nedensående knap skal redirecte til siden "/Pages/Management/ManageProductTypes.html" -->
-        <input id="btnAddNewProductTypes" type="button" value="Add new types" class="button" />
+        <input id="btnAddNewProductTypes" type="button" value="Add new types" class="button" {{action "addProducttype"}} />
 
         <p style="clear: both"></p>
         <br />
 
         <!-- MVC JavaScript opgave ----
-     Nedenstående skal representere alle produkttyper i databasen.
-     Alle produkttyper hentes fra databasen ved at udføre en HTTP GET REST kald til /api/producttype.
-     Dette kald håndteres af metoden "public List<ProductType> Get()" i /Controllers/ProductTypeController.cs -->
+        Nedenstående skal representere alle produkttyper i databasen.
+        Alle produkttyper hentes fra databasen ved at udføre en HTTP GET REST kald til /api/producttype.
+        Dette kald håndteres af metoden "public List<ProductType> Get()" i /Controllers/ProductTypeController.cs -->
         <table cellspacing="5" rules="all" border="1" id="ContentPlaceHolder1_GridView2" style="width:100%;border-collapse:collapse;">
             <tr>
                 <th>ID</th>
@@ -80,22 +92,24 @@
                 <th></th>
                 <th></th>
             </tr>
+            {{#each model.producttypes as |p index|}}
             <tr>
-                <td id="ID">{{p.ID}}</td>
-                <td id="Name">{{p.Name}}</td>
+                <td id="ID">{{p.id}}</td>
+                <td id="Name">{{p.name}}</td>
 
                 <!-- MVC JavaScript opgave ----
-            Nedenstående knap sletter produktet repræsenteret ved rækken,
-            dette sker ved at sende en HTTP delete til api/producttype/[produkttypeId],
-            efterfølgende skal ovenstående tabel/grid reloades -->
-                <td><button>Delete</button></td>
+                Nedenstående knap sletter produktet repræsenteret ved rækken,
+                dette sker ved at sende en HTTP delete til api/producttype/[produkttypeId],
+                efterfølgende skal ovenstående tabel/grid reloades -->
+                <td><button {{action "deleteProducttype" p.id}}>Delete</button></td>
 
                 <!-- MVC JavaScript opgave ----
-            Nedenstående knap redigere produktettypen repræsenteret ved rækken,
-            dette gøres ved at redirecte til siden pages/management/ManageProductType med den valgte produkttype -->
-                <td><button>Edit</button></td>
+                Nedenstående knap redigere produktettypen repræsenteret ved rækken,
+                dette gøres ved at redirecte til siden pages/management/ManageProductType med den valgte produkttype -->
+                <td><button {{action "editProducttype" p.id}}>Edit</button></td>
             </tr>
+            {{/each}}
         </table>
-    </div>
+    </script>
 </body>
 </html>
