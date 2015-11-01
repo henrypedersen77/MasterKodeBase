@@ -12,23 +12,35 @@
     <script src="/Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="/Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
     <script src="/Scripts/Template.js"></script>
+
+    <script src="/Frameworks/ember-template-compiler.js"></script>
+    <script src="/Frameworks/ember.debug.js"></script>
+    <script src="/Frameworks/ember-data.js"></script>
+
+    <script src="../Scripts/shoppingcart.js"></script>
 </head>
-<body>
+<body id="ember-app">
     <div id="header"></div> <!-- Template.js indsætter Template.html her -->
 
-    <div id="content">
+    <script type="text/x-handlebars" data-template-name="application">
+        <div id="content">
+            {{outlet}}
+        </div>
+    </script>
 
+    <script type="text/x-handlebars" data-template-name="index">
         <div id="ContentPlaceHolder1_pnlShoppingCart">
             <!-- MVC JavaScript opgave ----
                  Der skal laves en table per cart returneret fra HTTP get kaldet til /api/cart/{ClientID}/orders -->
             <table class="CartTable">
+                {{#each model as |order index|}}
                 <tr>
                     <td rowspan="2" style="width:50px;">
-                        <input type="image" src="../Images/Products/Cylinder%20Heads.jpg" />
+                        <input type="image" class="productImage" src={{order.Product.Image}} />
                     </td>
                     <td align="left" style="width:350px;">
-                        <h4>Product.Name</h4><br />
-                        Item No: Product.ID<br />
+                        <h4>{{order.Product.Name}}</h4><br />
+                        Item No: {{order.Product.ID}}<br />
                         In Stock
                     </td>
                     <td>Unit Price<hr /></td>
@@ -38,41 +50,26 @@
                     <!-- MVC JavaScript opgave ----
                          Ved tryk på delete skal der sendes en HTTP Delete til /api/cart/{cartID}
                          + denne side skal opfriskes -->
-                    <td><a id="ContentPlaceHolder1_del8">Delete Item</a></td>
+                    <td><a id="ContentPlaceHolder1_del8" {{action "deleteCart" index}}>Delete Item</a></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td>Product.Price</td>
+                    <td>{{order.Product.Price}}</td>
                     <td>
                         <!-- MVC JavaScript opgave ----
                              Rettes der i nedenstående amount, skal der sendes en HTTP post til /api/cart/{cartid}/amount med
                              antal angivet i JSON dataet-->
                         Amount
-                        <select>
-                            <option selected="selected" value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
+
+                        <select onchange={{action "changeAmount" index }} >
+                            {{#each selectedAmount as |amountChoice|}}
+                            <option value={{amountChoice}} selected={{eq order.Amount amountChoice}}>{{amountChoice}}</option>
+                            {{/each}}
                         </select>
                     </td>
-                    <td>Amoun * Product.Price</td>
+                    <td>{{mul order.Amount order.Product.Price}}</td>
                 </tr>
+                {{/each}}
             </table>
 
         </div>
@@ -83,7 +80,7 @@
                     <b>Total: </b>
                 </td>
                 <td>
-                    Sum af priserne på alle cart
+                    {{model.subtotal}}
                 </td>
             </tr>
 
@@ -92,7 +89,7 @@
                     <b>Vat: </b>
                 </td>
                 <td>
-                    subTotal * 0.21;
+                    {{model.vat}};
                 </td>
             </tr>
             <tr>
@@ -109,7 +106,7 @@
                     <b>Total Amount: </b>
                 </td>
                 <td>
-                    sum af priserne + shipping + vat
+                    {{model.totalamount}}
                 </td>
             </tr>
 
@@ -129,13 +126,13 @@
                     ID'erne angiver cart'sne ID'er.
 
                     Der skal sluttes af med at redirecte til Pages/Success.html -->
-                    <input type="submit" value="Check Out" id="ContentPlaceHolder1_btnCheckout" class="button" style="width:250px;" />
+                    <input {{action "checkOut"}} type="button" value="Check Out" id="ContentPlaceHolder1_btnCheckout" class="button" style="width:250px;" />
                 </td>
             </tr>
 
         </table>
 
-    </div>
+    </script>
 
 </body>
 </html>

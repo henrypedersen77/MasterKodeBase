@@ -191,6 +191,7 @@
     <Content Include="Scripts\login.js" />
     <Content Include="Scripts\product.js" />
     <Content Include="Scripts\register.js" />
+    <Content Include="Scripts\shoppingcart.js" />
     <Content Include="Scripts\Template.js" />
     <Content Include="Styles\StyleSheet.css" />
     <Content Include="Web.config">
