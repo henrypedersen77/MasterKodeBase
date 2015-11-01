@@ -11,21 +11,33 @@
 
     <script src="/Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="/Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
-    <script src="/Scripts/Template.js"></script> 
-</head>
-<body>
-    <div id="header"></div> <!-- Template.js indsætter Template.html her -->
+    <script src="/Scripts/Template.js"></script>
+    
+    <script src="/Frameworks/ember-template-compiler.js"></script>
+    <script src="/Frameworks/ember.debug.js"></script>
+    <script src="/Frameworks/ember-data.js"></script>
 
+    <script src="../../Scripts/manageproductypes.js"></script>
+</head>
+<body id="ember-app">
+    <div id="header"></div> <!-- Template.js indsætter Template.html her -->
     <!-- Det er kun brugeren med login=admin der kan tilgå Management siderne -->
 
-    <div id="content">
+    <script type="text/x-handlebars" data-template-name="application">
+        <div id="content">
+            {{outlet}}
+        </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="index">
         <!-- MVC JavaScript opgave ----
          Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework. -->
         <p>
             Name:
         </p>
         <p>
-            <input id="txtName" type="text" class="inputs" /><br />
+            {{input id="name" value=model.name type="text" class="inputs"}}
+            <br />
         </p>
         <!-- MVC JavaScript opgave ----
           Ved tryk på nednestående knap skal der sendes en HTTP post til /api/producttypes med JSON dataet på formen
@@ -34,11 +46,11 @@
             }
          I feltet lblResult skal der angives om det er gået godt eller ej -->
         <p>
-            <input id="btnSubmit" type="button" value="Submit" />
+            <input id="btnSubmit" type="button" value="Submit" {{action "save"}} />
         </p>
         <p>
-            <div id="lblResult"></div>
+            <div id="lblResult">{{statusmessage}}</div>
         </p>
-    </div>
+    </script>
 </body>
 </html>
