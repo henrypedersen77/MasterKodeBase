@@ -190,6 +190,7 @@
     <Content Include="Scripts\index.js" />
     <Content Include="Scripts\login.js" />
     <Content Include="Scripts\management.js" />
+    <Content Include="Scripts\manageproducts.js" />
     <Content Include="Scripts\manageproductypes.js" />
     <Content Include="Scripts\product.js" />
     <Content Include="Scripts\register.js" />

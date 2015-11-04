@@ -12,19 +12,29 @@
     <script src="/Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="/Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
     <script src="/Scripts/Template.js"></script>
+
+    <script src="/Frameworks/ember-template-compiler.js"></script>
+    <script src="/Frameworks/ember.debug.js"></script>
+    <script src="/Frameworks/ember-data.js"></script>
+
+    <script src="../../Scripts/manageproducts.js"></script>
 </head>
-<body>
+<body id="ember-app">
     <div id="header"></div> <!-- Template.js indsætter Template.html her -->
-
     <!-- Det er kun brugeren med login=admin der kan tilgå Management siderne -->
+    <script type="text/x-handlebars" data-template-name="application">
+        <div id="content">
+            {{outlet}}
+        </div>
+    </script>
 
-    <div id="content">
+    <script type="text/x-handlebars" data-template-name="index">
         <!-- MVC JavaScript opgave ----
              Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework.
              -->
         <p>Name:</p>
         <p>
-            <input id="txtName" type="text" class="inputs" />
+            {{input id="name" value=model.product.name type="text" class="inputs"}}
         </p>
 
         <p>
@@ -35,16 +45,21 @@
                  Nedenstående dropdown kommer fra produkttype tabellen, og data skal hentes ved at udføre
                  et HTTP GET REST kald til /api/producttypes.
                  Dette kald håndteres af metoden "public List<ProductType> Get()" i /Controllers/ProductTypeController.cs -->
-            <select id="ddlType" class="inputs">
+            <!--<select id="ddlType" class="inputs">
                 <option>1</option>
                 <option>2</option>
+            </select>-->
+            <select onchange={{action "changeType" }}>
+                {{#each model.producttypes as |typeChoice|}}
+                <option value={{typeChoice.id}} selected={{eqint model.product.typeid typeChoice.id}}>{{typeChoice.name}}</option>
+                {{/each}}
             </select>
         </p>
         <p>
             Price:
         </p>
         <p>
-            <input id="txtPrice" type="text" class="inputs" />
+            {{input id="price" value=model.product.price type="text" class="inputs"}}
         </p>
         <p>
             Image:
@@ -54,16 +69,22 @@
              et HTTP GET REST kald til /api/image.
              Dette kald håndteres af metoden "public List<string> Get()" i /Controllers/ImageController.cs -->
         <p>
-            <select id="ddlImage" class="inputs">
+            <!--<select id="ddlImage" class="inputs">
                 <option>1</option>
                 <option>2</option>
+            </select>-->
+            <select onchange={{action "changeImage" }}>
+                {{#each model.images as |imageChoice|}}
+                <option value={{imageChoice}} selected={{eq model.product.image imageChoice}}>{{imageChoice}}</option>
+                {{/each}}
             </select>
         </p>
         <p>
             Description:
         </p>
         <p>
-            <textarea rows=" 2" cols="20" id="ContentPlaceHolder1_txtDescription" class="inputs" style="height:74px;width:240px;"></textarea>
+            <!--<textarea rows=" 2" cols="20" id="ContentPlaceHolder1_txtDescription" class="inputs" style="height:74px;width:240px;"></textarea>-->
+            {{textarea value=model.product.description cols="100" rows="4" id="ContentPlaceHolder1_txtDescription" style="height:74px;width:240px;"}}
         </p>
         <!-- MVC JavaScript opgave ----
              Ved tryk på nednestående knap skal der sendes en HTTP post til /api/product med JSON dataet på formen
@@ -76,11 +97,11 @@
                }
             I feltet lblResult skal der angives om det er gået godt eller ej -->
         <p>
-            <input id="btnSubmit" type="button" value="Submit" />
+            <input id="btnSubmit" type="button" value="Submit" {{action "save"}} />
         </p>
         <p>
-            <div id="lblResult"></div>
+            <div id="lblResult">{{statusmessage}}</div>
         </p>
-    </div>
+    </script>
 </body>
 </html>
