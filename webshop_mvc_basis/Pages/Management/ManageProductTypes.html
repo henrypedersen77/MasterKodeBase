@@ -6,37 +6,42 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="/Styles/StyleSheet.css" rel="stylesheet" />
-    <link href="/Frameworks/bootstrap-3.3.5-dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="../../Styles/StyleSheet.css" rel="stylesheet" />
+    <link href="../../Frameworks/bootstrap-3.3.5-dist/css/bootstrap.css" rel="stylesheet" />
 
-    <script src="/Frameworks/jQuery/jquery-2.1.4.js"></script>
-    <script src="/Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
-    <script src="/Scripts/Template.js"></script> 
+    <script src="../../Frameworks/jQuery/jquery-2.1.4.js"></script>
+    <script src="../../Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
+    <script src="../../Scripts/Template.js"></script> 
+    <script src="../../Frameworks/backbone/underscore-min.js"></script>
+    <script src="../../Frameworks/backbone/backbone-min.js"></script>
 </head>
 <body>
     <div id="header"></div> <!-- Template.js indsætter Template.html her -->
 
     <div id="content">
-        <!-- MVC JavaScript opgave ----
+        <script type="text/template" id="producttype-tmpl">
+            <!-- MVC JavaScript opgave ----
          Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework. -->
-        <p>
-            Name:
-        </p>
-        <p>
-            <input id="txtName" type="text" class="inputs" /><br />
-        </p>
-        <!-- MVC JavaScript opgave ----
+            <p>
+                Name:
+            </p>
+            <p>
+                <input id="txtName" type="text" class="inputs" value="<%= Name %>" /><br />
+            </p>
+            <!-- MVC JavaScript opgave ----
           Ved tryk på nednestående knap skal der sendes en HTTP post til /api/producttypes med JSON dataet på formen
             {
                 "Name": "Filters"
             }
          I feltet lblResult skal der angives om det er gået godt eller ej -->
-        <p>
-            <input id="btnSubmit" type="button" value="Submit" />
-        </p>
-        <p>
-            <div id="lblResult"></div>
-        </p>
+            <p>
+                <input id="btnSubmit" type="button" value="Submit" class=" button" data-id="<%= ID %>" />
+         </p>
+            <p>
+                <div id="lblResult"></div>
+            </p>
+        </script>
     </div>
+    <script src="../../Scripts/Manageproducttypes.js"></script>
 </body>
 </html>

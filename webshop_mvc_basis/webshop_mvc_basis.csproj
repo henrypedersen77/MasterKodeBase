@@ -184,6 +184,14 @@
     <Content Include="Pages\Template.html" />
     <Content Include="Pages\TemplateLogin.html" />
     <Content Include="Pages\TemplateLogout.html" />
+    <Content Include="Scripts\Management.js" />
+    <Content Include="Scripts\Manageproduct.js" />
+    <Content Include="Scripts\Manageproducttypes.js" />
+    <Content Include="Scripts\Shppingcart.js" />
+    <Content Include="Scripts\Product.js" />
+    <Content Include="Scripts\Login.js" />
+    <Content Include="Scripts\Register.js" />
+    <Content Include="Scripts\Index.js" />
     <Content Include="Scripts\About.js" />
     <Content Include="Scripts\AdminAuthorization.js" />
     <Content Include="Scripts\Template.js" />

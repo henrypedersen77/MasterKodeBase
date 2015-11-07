@@ -1,13 +1,12 @@
 ﻿var app = app || {};
 
 app.About = Backbone.Model.extend({
-    url: '/about/1',
+    url: '/about',
     default: {
         quote: '',
         author: ''
     },
 });
-
 
 app.AboutView = Backbone.View.extend({
     el: '#about-view',
@@ -18,15 +17,20 @@ app.AboutView = Backbone.View.extend({
         this.render();
     },
     render: function(){
-        var html = this.template(this.model.toJSON());
-        this.$el.html(html);
-        return this;    
+        _.each(this.model.models, function (index) {
+            var ProductTemplate = this.template(index.toJSON());
+            $(this.el).append(ProductTemplate);
+        }, this);
+
+        //var html = this.template(this.model.toJSON());
+        //this.$el.html(html);
+        //return this;    
     }
 });
 
 var about = new app.About({
     quote: "We know what we are, but not what we may be .",
-    author: "Abraham Lincolntest"
+    author: "Abraham Lincoln"
 }
 );
 

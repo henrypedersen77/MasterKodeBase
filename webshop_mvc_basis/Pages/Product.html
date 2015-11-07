@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+<html>
 <head>
     <title>Product</title>
 
@@ -10,62 +11,72 @@
 
     <script src="../Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="../Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
-    <script src="../Scripts/Template.js"></script>  
+    <script src="../Scripts/Template.js"></script>
+    <script src="../Frameworks/backbone/underscore-min.js"></script>
+    <script src="../Frameworks/backbone/backbone-min.js"></script>
 </head>
 <body>
     <div id="header"></div> <!-- Template.js indsætter Template.html her -->
 
     <div id="container">
         <!-- MVC JavaScript opgave ----
-         Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework. 
+         Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework.
          Dvs. det pågældende produkt skal loades fra databasen og vises i nednestående html elementer.
-         
-         I url'en angives det produkt brugeren vil se, ex.: http://localhost:1342/Pages/Product.html?id=15 
+
+         I url'en angives det produkt brugeren vil se, ex.: http://localhost:1342/Pages/Product.html?id=15
          I ovenstående er det produkt med id 15 der skal loades og vises på siden.
         -->
-        <div>
-            <img src="imgProduct" class="detailsImage" />
-            <h2>
-                <label id="lblTitle"></label>
-            </h2>
-        </div>
-        <div>
-            <label id="lblDescription" class="detailsDescription"></label>
-            <hr />
-            <label id="lblPrice" class=" detailsPrice"></label><br />
-            Quantity:<select id="ddlAmount">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-            </select>
-            <!-- MVC JavaScript opgave ---- 
+        <script type="text/template" id="product-tmpl">
+            <div>
+                <img src="../Content/Images/Products/<%= Image %>" class="detailsImage" />
+                <h2>
+                    <label id="lblTitle"><%= Name %></label>
+                </h2>
+            </div>
+            <div>
+                <label id="lblDescription" class="detailsDescription"><%= Description %></label>
+                <hr />
+                <label id="lblPrice" class=" detailsPrice"><%= Price %></label><br />
+                Quantity:<select id="ddlAmount">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                </select>
+                <!-- MVC JavaScript opgave ----
                  Ved tryk på nedenstående knap skal der sender en HTTP post til /api/cart med JSON data på følgende form
                     {
-	                    "ClientID" : "1f500a65-fe8f-4423-8ca7-4edd47b2f4ed",
-	                    "ProductID" : 12,
-	                    "Amount" : 2,
-	                    "DatePurchased" : "2015-08-17 20:18:00",
-	                    "IsInCart" : "true"
-                    } 
-                
+                        "ClientID" : "1f500a65-fe8f-4423-8ca7-4edd47b2f4ed",
+                        "ProductID" : 12,
+                        "Amount" : 2,
+                        "DatePurchased" : "2015-08-17 20:18:00",
+                        "IsInCart" : "true"
+                    }
+
                 ClientID findes ved at lave en HTTP get til /api/login, Client id står så i det returenerede GUID felt.
-                Hvis der returees en HTTP 400 fejlbesked, så er bruger ikke logget ind, og så skal lblResult udfyldes 
+                Hvis der returees en HTTP 400 fejlbesked, så er bruger ikke logget ind, og så skal lblResult udfyldes
                 med beskeden "Please log in to order items" -->
-            <input id="btnAdd" type="button" value="Add Product" class=" button" />
-            <br />
+                <input id="btnAdd" type="button" value="Add Product" class=" button" name="<%= ID %>"/>
+                <br />
 
-            <!-- MVC JavaScript opgave ---- 
+                <!-- MVC JavaScript opgave ----
                  Efter klik på Add Product knappen, skal beskeden "Order was succesfully inserted" stå angivet i nedenstående label -->
-            <label id="lblResult"></label>
-        </div>
-        <div>
-            Product No: <br />
-            <label id="lblItemNr" style="font-style: italic"></label>
-        </div>
+                <label id="lblResult"></label>
+            </div>
+            <div>
+                Product No: <br />
+                <label id="lblItemNr" style="font-style: italic"><%= ID %></label>
+            </div>
 
-        <!-- Nedenstående felt lblAvailable bindes der ikke til, den blev heller ikke anvedt i tutorialen. -->
-        <div class=" auto-style2">
-            <label id="lblAvailable" class="productPrice">Available!</label>
-        </div>
+            <!-- Nedenstående felt lblAvailable bindes der ikke til, den blev heller ikke anvedt i tutorialen. -->
+            <div class=" auto-style2">
+                <label id="lblAvailable" class="productPrice">Available!</label>
+            </div>
+        </script>
+        <script src="../Scripts/Product.js"></script>
     </div>
 </body>
+</html>
