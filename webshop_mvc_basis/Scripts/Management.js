@@ -1,29 +1,22 @@
 ﻿var app = app || {};
-
 var allProducts;
 var allProductTypes;
-
 app.Product = Backbone.Model.extend({
     urlRoot: '/api/Product',
     reset: true
 });
-
 app.Producttype = Backbone.Model.extend({
     urlRoot: '/api/Producttype',
     reset: true
 });
-
-
 app.Products = Backbone.Collection.extend({
     url: '/api/Product',
     reset: true
 });
-
 app.Producttypes = Backbone.Collection.extend({
     url: '/api/Producttype',
     reset: true
 });
-
 app.ProductView = Backbone.View.extend({
     el: '#productContent',
     events: {
@@ -35,7 +28,6 @@ app.ProductView = Backbone.View.extend({
         allProducts = new app.Products();
         allProducts.fetch();
         allProducts.on('all', function (data) {
-            var t = allProducts.toJSON();
             self.$el.html(self.productTemplate(allProducts.toJSON()));
         });
         return this;
@@ -60,7 +52,6 @@ app.ProductView = Backbone.View.extend({
         }
     }
 });
-
 app.ProducttypeView = Backbone.View.extend({
     el: '#producttypeContent',
     events: {
@@ -72,7 +63,6 @@ app.ProducttypeView = Backbone.View.extend({
         allProductTypes = new app.Producttypes();
         allProductTypes.fetch();
         allProductTypes.on('all', function (data) {
-            var t = allProductTypes.toJSON();
             self.$el.html(self.productTemplate(allProductTypes.toJSON()));
         });
         return this;
@@ -97,38 +87,34 @@ app.ProducttypeView = Backbone.View.extend({
         }
     }
 });
-
 addproduct = function () {
     window.location("/Pages/Management/ManageProducts.html");
 };
-
 deleteproduct = function (pid) {
-    var product = new app.Product({ id: pid });
+    var product = new app.Product({
+        id: pid
+    });
     product.destroy().done(function () {//der skal sendes en HTTP Delete til /api/product/{pid}
         allProducts.fetch();//+ data på siden skal opfriskes
     });
 };
-
 editproduct = function (id) {
     window.location("/Pages/Management/ManageProducts.html#id=" + id);
 };
-
 addproducttype = function () {
     window.location("/Pages/Management/ManageProductTypes.html");
 };
-
 deleteproducttype = function (pid) {
-    var producttype = new app.Producttype({ id: pid });
+    var producttype = new app.Producttype({
+        id: pid
+    });
     producttype.destroy().done(function () {//der skal sendes en HTTP Delete til /api/product/{pid}
         allProductTypes.fetch();//+ data på siden skal opfriskes
     });
 };
-
 editproducttype = function (id) {
     window.location("/Pages/Management/ManageProductTypes.html#id=" + id);
 };
-
-//main
 $(function () {
     new app.ProductView();
     new app.ProducttypeView();

@@ -1,14 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Shopping Cart</title>
-
+    <title>
+    Shopping Cart
+    </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link href="/Styles/StyleSheet.css" rel="stylesheet" />
     <link href="/Frameworks/bootstrap-3.3.5-dist/css/bootstrap.css" rel="stylesheet" />
-
     <script src="/Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="/Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
     <script src="/Scripts/Template.js"></script>
@@ -17,7 +16,6 @@
 </head>
 <body>
     <div id="header"></div> <!-- Template.js indsætter Template.html her -->
-
     <div id="content">
         <script type="text/template" id="shoppingcart-template">
             <div id="ContentPlaceHolder1_pnlShoppingCart">
@@ -30,22 +28,40 @@
                             <input type="image" src="../Images/Products/<%=order.attributes.Product.Image%>" />
                         </td>
                         <td align="left" style="width:350px;">
-                            <h4><%= order.attributes.Product.Name %></h4><br />
-                            Item No: <%= order.attributes.Product.ID %><br />
+                            <h4>
+                            <%= order.attributes.Product.Name %>
+                            </h4>
+                            <br />
+                            Item No: <%= order.attributes.Product.ID %>
+                            <br />
                             In Stock
                         </td>
-                        <td>Unit Price<hr /></td>
-                        <td>Quantity<hr /></td>
-                        <td>Item Total<hr /></td>
-
+                        <td>
+                        Unit Price
+                        <hr />
+                        </td>
+                        <td>
+                        Quantity
+                        <hr />
+                        </td>
+                        <td>
+                        Item Total
+                        <hr />
+                        </td>
                         <!-- MVC JavaScript opgave ----
                     Ved tryk på delete skal der sendes en HTTP Delete til /api/cart/{cartID}
                     + denne side skal opfriskes -->
-                        <td><button data-id="<%= order.attributes.ID %>" id="btnDel">Delete Item</button></td>
+                        <td>
+                        <button data-id="<%= order.attributes.ID %>" id="btnDel">
+                            Delete Item
+                            </button>
+                        </td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td><%= order.attributes.Product.Price %></td>
+                        <td>
+                        <%= order.attributes.Product.Price %>
+                        </td>
                         <td>
                             <!-- MVC JavaScript opgave ----
                         Rettes der i nedenstående amount, skal der sendes en HTTP post til /api/cart/{cartid}/amount med
@@ -53,30 +69,35 @@
                             Amount
                             <select id="select_amount" data-id="<%= order.attributes.ID %>">
                                 <%     optionsArray.forEach( function(v) { %>
-                                <option value="<%=v%>" <% if(order.get('Amount') === v){ print('selected=selected');} %> ><%=v%></option>
+                                <option value="<%=v%>" <% if(order.get('Amount') === v){ print('selected=selected');} %> >
+                                    <%=v%>
+                                    </option>
                                 <%     }); %>
                             </select>
                         </td>
-                        <td><%= order.get('Amount') * order.attributes.Product.Price %></td>
+                        <td>
+                        <%= order.get('Amount') * order.attributes.Product.Price %>
+                        </td>
                     </tr>
                 </table>
                 <% }); %>
-
             </div>
-
             <table>
                 <tr>
                     <td>
-                        <b>Total: </b>
+                        <b>
+                        Total: 
+                        </b>
                     </td>
                     <td>
                         <%=total%>
                     </td>
                 </tr>
-
                 <tr>
                     <td>
-                        <b>Vat: </b>
+                        <b>
+                        Vat: 
+                        </b>
                     </td>
                     <td>
                         <%=vat%>
@@ -84,29 +105,30 @@
                 </tr>
                 <tr>
                     <td>
-                        <b>Shipping: </b>
+                        <b>
+                        Shipping: 
+                        </b>
                     </td>
                     <td>
                         <%=shipping%>
                     </td>
                 </tr>
-
                 <tr>
                     <td>
-                        <b>Total Amount: </b>
+                        <b>
+                        Total Amount: 
+                        </b>
                     </td>
                     <td>
                         <%=totalAmount%>
                     </td>
                 </tr>
-
                 <tr>
                     <td>
                         <br />
                         <!-- MVC JavaScript opgave ----
                          Ved tryk på continue shopping redirectes der til "Pages/Index.html" -->
                         <a id="ContentPlaceHolder1_LinkButton1" href="Index.html">Continue Shopping</a> &nbsp;&nbsp; or
-
                         <!-- MVC JavaScript opgave ----
                          Ved tryk på checkout skal der sendes en HTTP post til /api/cart/paid, med JSON data på formen
                             [
@@ -119,7 +141,6 @@
                         <input type="submit" value="Check Out" id="ContentPlaceHolder1_btnCheckout" class="button" style="width:250px;" />
                     </td>
                 </tr>
-
             </table>
         </script>
     </div>

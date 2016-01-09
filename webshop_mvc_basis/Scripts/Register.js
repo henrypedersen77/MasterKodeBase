@@ -1,5 +1,4 @@
 ﻿var app = app || {};
-
 app.RegisterModel = Backbone.Model.extend({
     url: '/api/Register',
     defaults: {
@@ -13,10 +12,11 @@ app.RegisterModel = Backbone.Model.extend({
         }
     }
 });
-
 app.AppView = Backbone.View.extend({
     el: '#btnRegister',
-    events: { 'click': 'handleClick' },
+    events: {
+        'click': 'handleClick'
+    },
     handleClick: function (e) {
         if ($('#txtPassword').val() === $('#txtConfirmPassword').val()) {
             var data = new app.RegisterModel({
@@ -29,9 +29,7 @@ app.AppView = Backbone.View.extend({
                     PostalCode: $('#txtPostalCode').val()
                 }
             });
-
             data.save().done(function (response) {
-                //redirect til index siden
                 window.location("/Pages/Index.html");
             }).fail(function (response) {
                 $('#statusmessage').html("Error registering user! " + response);
@@ -41,7 +39,6 @@ app.AppView = Backbone.View.extend({
         }
     }
 });
-
 $(function () {
     new app.AppView();
 });

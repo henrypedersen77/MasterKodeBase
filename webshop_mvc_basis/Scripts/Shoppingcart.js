@@ -1,14 +1,11 @@
 ﻿var app = app || {};
-
 var theView;
 var allOrders;
-
 var optionsArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 var total = 0;
 var vat = 0;
 var shipping = 15;
 var totalAmount = 0;
-
 app.Shoppingcart = Backbone.Collection.extend({
     url: function () { return '/api/cart/' + this.url_created + '/orders'; },
     initialize: function (models, options) {
@@ -16,7 +13,6 @@ app.Shoppingcart = Backbone.Collection.extend({
     },
     reset: true
 });
-
 app.PaidOrders = Backbone.Collection.extend({
     url: '/api/cart/paid',
     save: function(){
@@ -28,17 +24,14 @@ app.PaidOrders = Backbone.Collection.extend({
     },
     reset: true
 });
-
 app.Order = Backbone.Model.extend({
     urlRoot: '/api/Cart',
     reset: true
 });
-
 app.Login = Backbone.Model.extend({
     urlRoot: '/api/Login',
     reset: true
 });
-
 app.AppView = Backbone.View.extend({
     el: '#content',
     events: {
@@ -51,7 +44,9 @@ app.AppView = Backbone.View.extend({
         var loginModel = new app.Login();
         loginModel.fetch().done(function (response) {
             var ClientID = response.user.Guid;
-            allOrders = new app.Shoppingcart(null, { url_created: ClientID });
+            allOrders = new app.Shoppingcart(null, {
+                url_created: ClientID
+            });
             allOrders.fetch();
             allOrders.on('all', function (data) {
                 self.$el.html(self.shoppingcartTemplate(allOrders.toJSON()));
@@ -94,20 +89,19 @@ app.AppView = Backbone.View.extend({
         }
     }
 });
-
 deleteitem = function (cartid) {
-    var cart = new app.Order({ id: cartid });
+    var cart = new app.Order({
+        id: cartid
+    });
     cart.destroy().done(function () {//der skal sendes en HTTP Delete til /api/cart/{cartID}
         allOrders.fetch();//+ data på siden skal opfriskes
     });
  };
-
 checkout = function () {
     var po = new app.PaidOrders();
     po.add(allOrders.toJSON()); //En kopi af allOrders
     po.save();
  };
-
  changeamount = function (cartid, value) {
      //der skal sendes en HTTP post til /api/cart/{cartid}/amount med antal angivet i JSON dataet
 
@@ -124,8 +118,6 @@ checkout = function () {
          }
      });
  };
-
-//main
 $(function () {
     theView = new app.AppView();
 });

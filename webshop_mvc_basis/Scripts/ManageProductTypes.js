@@ -1,5 +1,4 @@
 ﻿var app = app || {};
-
 app.Router = Backbone.Router.extend({
     routes: {
         "": "viewProductType",
@@ -16,30 +15,36 @@ app.Router = Backbone.Router.extend({
         }
     }
 });
-
 app.Producttype = Backbone.Model.extend({
     urlRoot: '/api/producttype',
     reset: true
 });
-
 app.AppView = Backbone.View.extend({
     el: '#content',
-    events: {'click': 'handleClick'},
+    events: {
+        'click': 'handleClick'
+    },
     productTemplate: _.template($('#producttype-template').html()),
     render: function (pid) {
         var self = this;
         var producttype = new app.Producttype();
         if (pid != null) {
             producttype = new app.Producttype();
-            producttype.fetch({ data: $.param({ id: pid }) });
+            producttype.fetch({
+                data: $.param({
+                    id: pid
+                })
+            });
             producttype.on('all', function (data) {
                 self.$el.html(self.productTemplate(producttype.toJSON()));
             });
         } else {
-            producttype = new app.Producttype({ID: -1977, Name: ''});
+            producttype = new app.Producttype({
+                ID: -1977,
+                Name: ''
+            });
             self.$el.html(self.productTemplate(producttype.toJSON()));
         }
-        
         return this;
     },
     handleClick: function (e) {
@@ -55,21 +60,24 @@ app.AppView = Backbone.View.extend({
         }
     }
 });
-
 addproducttype = function (PTName) {
-    var pt = new app.Producttype({ID:null, Name: PTName });
+    var pt = new app.Producttype({
+        ID: null,
+        Name: PTName
+    });
     pt.save().done(function () {
         $('#lblResult').html("Producttype has been saved!");
     });
 }
-
 changeproducttype = function (PTID, PTName) {
-    var pt = new app.Producttype({ ID: PTID, Name: PTName });
+    var pt = new app.Producttype({
+        ID: PTID,
+        Name: PTName
+    });
     pt.save().done(function () {
         $('#lblResult').html("Producttype has been saved!");
     });
 }
-
 $(function () {
     new app.Router();
     Backbone.history.start();

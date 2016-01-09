@@ -1,14 +1,13 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Garage Manager</title>
-
+    <title>
+    Garage Manager
+    </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link href="../Styles/StyleSheet.css" rel="stylesheet" />
     <link href="../Frameworks/bootstrap-3.3.5-dist/css/bootstrap.css" rel="stylesheet" />
-
     <script src="../Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="../Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
     <script src="../Scripts/Template.js"></script>  
@@ -17,7 +16,6 @@
 </head>
 <body>
     <div id="header"></div>  <!-- Template.js indsætter Template.html her -->
-
     <div id="ContentPlaceHolder1_pnlProducts">
         <!-- MVC JavaScript opgave ----
              Der skal laves et div element per produkt, eller en række i et grid.
@@ -34,9 +32,13 @@
                     <img id="productlink" type="image" class="productImage" src="<%= '../Content/Images/Products/' + product.get('Image') %>" />
                 </a>
                 <br />
-                <span class="productName"><%= product.get('Name') %></span>
+                <span class="productName">
+                <%= product.get('Name') %>
+                </span>
                 <br />
-                <span class="productPrice"><%= product.get('Price') %></span>
+                <span class="productPrice">
+                <%= product.get('Price') %>
+                </span>
             </div>
             <% }); %>
         </script>

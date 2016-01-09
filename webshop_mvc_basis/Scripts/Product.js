@@ -1,5 +1,4 @@
 ﻿var app = app || {};
-
 app.Router = Backbone.Router.extend({
     routes: {
         ":id": "viewProduct"
@@ -10,30 +9,29 @@ app.Router = Backbone.Router.extend({
         view.render(pid);
     }
 });
-
 app.Product = Backbone.Model.extend({
     urlRoot: '/api/Product',
     reset: true
 });
-
 app.Login = Backbone.Model.extend({
     urlRoot: '/api/Login',
     reset: true
 });
-
 app.Cart = Backbone.Model.extend({
     urlRoot: '/api/Cart',
     reset: true
 });
-
 app.AppView = Backbone.View.extend({
     el: '#container',
-    //events: {'click': 'handleClick'},
     productTemplate: _.template($('#product-template').html()),
     render: function (pid) {
         var self = this;
         var product = new app.Product();
-        product.fetch({ data: $.param({ id: pid }) });
+        product.fetch({
+            data: $.param({
+                id: pid
+            })
+        });
         product.on('all', function (data) {
             var string = product.toJSON();
             self.$el.html(self.productTemplate(product.toJSON()));
@@ -42,10 +40,11 @@ app.AppView = Backbone.View.extend({
         return this;
     }
 });
-
 app.BtnView = Backbone.View.extend({
     el: '#btnAdd',
-    events: { 'click': 'handleClick' },
+    events: {
+        'click': 'handleClick'
+    },
     handleClick: function (e) {
         var loginModel = new app.Login();
         loginModel.fetch().done(function (response) {
@@ -67,7 +66,6 @@ app.BtnView = Backbone.View.extend({
         });
     }
 });
-
 $(function () {
     new app.Router();
     Backbone.history.start();
