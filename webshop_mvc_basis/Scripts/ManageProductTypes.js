@@ -9,8 +9,10 @@
             });
         }
         self.saveproducttype = function () {
-            $http.post('/api/producttype', { ID: self.producttype.ID, Name: self.producttype.Name }).then(
-            function (result) {
+            $http.post('/api/producttype', {
+                ID: self.producttype.ID,
+                Name: self.producttype.Name
+            }).then(function (result) {
                 self.message = 'the producttype have been saved!';
             }, function (result) {
                 self.message = 'error: ' + result.data;

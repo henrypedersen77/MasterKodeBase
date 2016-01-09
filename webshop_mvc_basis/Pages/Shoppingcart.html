@@ -1,26 +1,22 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="Shoppingcart">
 <head>
-    <title>Shopping Cart</title>
-
+    <title>
+    Shopping Cart
+    </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link href="/Styles/StyleSheet.css" rel="stylesheet" />
     <link href="/Frameworks/bootstrap-3.3.5-dist/css/bootstrap.css" rel="stylesheet" />
-
     <script src="/Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="/Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
     <script src="/Scripts/Template.js"></script>
-
     <script src="../Frameworks/angular-1.4.5/angular.js"></script>
     <script src="../Scripts/Shoppingcart.js"></script>
 </head>
 <body ng-controller="ShoppingcartCtrl as ctrl">
     <div id="header"></div> <!-- Template.js indsætter Template.html her -->
-
     <div id="content">
-
         <div id="ContentPlaceHolder1_pnlShoppingCart">
             <!-- MVC JavaScript opgave ----
                  Der skal laves en table per cart returneret fra HTTP get kaldet til /api/cart/{userId}/orders"-->
@@ -30,21 +26,36 @@
                         <input type="image" ng-src={{ctrl.getImageLink(cart.Product.Image)}} />
                 </td>
                 <td align="left" style="width:350px;">
-                    <h4>{{cart.Product.Name}}</h4><br />
+                    <h4>
+                    {{cart.Product.Name}}
+                    </h4>
+                    <br />
                     Item No: {{cart.Product.ID}}<br />
                     In Stock
                 </td>
-                <td>Unit Price<hr /></td>
-                <td>Quantity<hr /></td>
-                <td>Item Total<hr /></td>
+                <td>
+                    Unit Price<hr />
+                    </td>
+                <td>
+                    Quantity<hr />
+                </td>
+                <td>
+                    Item Total<hr />
+                </td>
                 <!-- MVC JavaScript opgave ----
              Ved tryk på delete skal der sendes en HTTP Delete til /api/cart/{cartID}
              + denne side skal opfriskes -->
-                <td><a id="ContentPlaceHolder1_del8" ng-click="ctrl.deleteorder(cart)">Delete Item</a></td>
+                <td>
+                    <a id="ContentPlaceHolder1_del8" ng-click="ctrl.deleteorder(cart)">
+                    Delete Item
+                    </a>
+                </td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td>{{cart.Product.Price}}</td>
+                    <td>
+                    {{cart.Product.Price}}
+                    </td>
                     <td>
                         <!-- MVC JavaScript opgave ----
                      Rettes der i nedenstående amount, skal der sendes en HTTP post til /api/cart/{cartid}/amount med
@@ -74,7 +85,9 @@
         <option>20</option>-->
                         </select>
                     </td>
-                    <td>{{cart.Product.Price * cart.Amount}}</td>
+                    <td>
+                    {{cart.Product.Price * cart.Amount}}
+                    </td>
                     <!--</td>-->
                 </tr>
             </table>
@@ -82,7 +95,9 @@
         <table>
             <tr>
                 <td>
-                    <b>Total: </b>
+                    <b>
+                    Total: 
+                    </b>
                 </td>
                 <td>
                     {{ctrl.total}}
@@ -90,7 +105,9 @@
             </tr>
             <tr>
                 <td>
-                    <b>Vat: </b>
+                    <b>
+                    Vat: 
+                    </b>
                 </td>
                 <td>
                     {{ctrl.vat}}
@@ -98,7 +115,9 @@
             </tr>
             <tr>
                 <td>
-                    <b>Shipping: </b>
+                    <b>
+                    Shipping: 
+                    </b>
                 </td>
                 <td>
                     {{ctrl.shipping}}
@@ -106,7 +125,9 @@
             </tr>
             <tr>
                 <td>
-                    <b>Total Amount: </b>
+                    <b>
+                    Total Amount: 
+                    </b>
                 </td>
                 <td>
                     {{ctrl.totalamount}}
@@ -117,7 +138,9 @@
                     <br />
                     <!-- MVC JavaScript opgave ----
                          Ved tryk på continue shopping redirectes der til "Pages/Index.html" -->
-                    <a id="ContentPlaceHolder1_LinkButton1" href="Index.html">Continue Shopping</a> &nbsp;&nbsp; or
+                    <a id="ContentPlaceHolder1_LinkButton1" href="Index.html">
+                    Continue Shopping
+                    </a> &nbsp;&nbsp; or
                     <!-- MVC JavaScript opgave ----
                          Ved tryk på checkout skal der sendes en HTTP post til api/cart/paid, med JSON data på formen
                             [

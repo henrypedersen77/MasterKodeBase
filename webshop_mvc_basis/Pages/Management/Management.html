@@ -1,100 +1,131 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="Management">
 <head>
-    <title>Management</title>
-
+    <title>
+    Management
+    </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link href="/Styles/StyleSheet.css" rel="stylesheet" />
     <link href="/Frameworks/bootstrap-3.3.5-dist/css/bootstrap.css" rel="stylesheet" />
-
     <script src="/Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="/Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
-
     <script src="/Scripts/AdminAuthorization.js"></script>
     <script src="/Scripts/Template.js"></script>
-
     <script src="/Frameworks/angular-1.4.5/angular.js"></script>
     <script src="/Scripts/Management.js"></script>
 </head>
 <body ng-controller="ManagementCtrl as ctrl">
     <div id="header"></div> <!-- Template.js indsætter Template.html her -->
-
     <div id="content">
-
         <!-- MVC JavaScript opgave ----
              Nedensående knap skal redirecte til siden "/Pages/Management/ManageProducts.html" -->
         <input id="btnAddNewProduct" type="button" value="Add new Product" class=" button" ng-click="ctrl.createproduct()"/>
-        <p style="clear: both"></p>
-
+        <p style="clear: both">    </p>
         <!-- MVC JavaScript opgave ----
              Nedenstående skal representere alle producter i databasen.
              Alle produkterne hentes fra databasen ved at udføre en HTTP GET REST kald til api/product.
              Dette kald håndteres af metoden "public List<Product> Get()" i /Controllers/ProductController.cs  -->
         <table cellspacing="5" rules="all" border="1" id="ContentPlaceHolder1_grdProducts" style="width:100%;border-collapse:collapse;">
             <tr>
-                <th>ID</th>
-                <th>TypeID</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Description</th>
+                <th>
+                ID
+                </th>
+                <th>
+                TypeID
+                </th>
+                <th>
+                Name
+                </th>
+                <th>
+                Price
+                </th>
+                <th>
+                Description
+                </th>
                 <th></th>
                 <th></th>
             </tr>
             <tr data-ng-repeat="p in ctrl.products">
-                <td id="ID">{{p.ID}}</td>
-                <td id="TypeID">{{p.TypeID}}</td>
-                <td id="Name">{{p.Name}}</td>
-                <td id="Price">{{p.Price}}</td>
-                <td id="Description">{{p.Description}}</td>
-
+                <td id="ID">
+                {{p.ID}}
+                </td>
+                <td id="TypeID">
+                {{p.TypeID}}
+                </td>
+                <td id="Name">
+                {{p.Name}}
+                </td>
+                <td id="Price">
+                {{p.Price}}
+                </td>
+                <td id="Description">
+                {{p.Description}}
+                </td>
                 <!-- MVC JavaScript opgave ----
             Nedenstående knap sletter produktet repræsenteret ved rækken,
             dette sker ved at sende en HTTP delete til api/product/[produktId],
             efterfølgende skal ovenstående tabel/grid reloades -->
-                <td><button ng-click="ctrl.deleteproduct(p.ID)">Delete</button></td>
-
+                <td>
+                <button ng-click="ctrl.deleteproduct(p.ID)">
+                    Delete
+                    </button>
+                </td>
                 <!-- MVC JavaScript opgave ----
             Nedenstående knap redigere produktet repræsenteret ved rækken,
             dette gøres ved at redirecte til siden pages/management/ManageProduct med det valgte produkt -->
-                <td><button ng-click="ctrl.editproduct(p.ID)">Edit</button></td>
+                <td>
+                <button ng-click="ctrl.editproduct(p.ID)">
+                    Edit
+                    </button>
+                </td>
             </tr>
         </table>
         <br />
-
         <!-- MVC JavaScript opgave ----
              Nedensående knap skal redirecte til siden "/Pages/Management/ManageProductTypes.html" -->
         <input id="btnAddNewProductTypes" type="button" value="Add new types" class="button" ng-click="ctrl.createproducttype()" />
-
         <p style="clear: both"></p>
         <br />
-
         <!-- MVC JavaScript opgave ----
          Nedenstående skal representere alle produkttyper i databasen.
          Alle produkttyper hentes fra databasen ved at udføre en HTTP GET REST kald til api/producttypes.
          Dette kald håndteres af metoden "public List<ProductType> Get()" i /Controllers/ProductTypeController.cs -->
         <table cellspacing="5" rules="all" border="1" id="ContentPlaceHolder1_GridView2" style="width:100%;border-collapse:collapse;">
             <tr>
-                <th>ID</th>
-                <th>Name</th>
+                <th>
+                ID
+                </th>
+                <th>
+                Name
+                </th>
                 <th></th>
                 <th></th>
             </tr>
             <tr data-ng-repeat="p in ctrl.producttypes">
-                <td id="ID">{{p.ID}}</td>
-                <td id="Name">{{p.Name}}</td>
-
+                <td id="ID">
+                {{p.ID}}
+                </td>
+                <td id="Name">
+                {{p.Name}}
+                </td>
                 <!-- MVC JavaScript opgave ----
             Nedenstående knap sletter produktet repræsenteret ved rækken,
             dette sker ved at sende en HTTP delete til api/producttype/[produkttypeId],
             efterfølgende skal ovenstående tabel/grid reloades -->
-                <td><button ng-click="ctrl.deleteproducttype(p.ID)">Delete</button></td>
-
+                <td>
+                <button ng-click="ctrl.deleteproducttype(p.ID)">
+                    Delete
+                    </button>
+                </td>
                 <!-- MVC JavaScript opgave ----
             Nedenstående knap redigere produktettypen repræsenteret ved rækken,
             dette gøres ved at redirecte til siden pages/management/ManageProductType med den valgte produkttype -->
-                <td><button ng-click="ctrl.editproducttype(p.ID)">Edit</button></td>
+                <td>
+                <button ng-click="ctrl.editproducttype(p.ID)">
+                    Edit
+                    </button>
+                </td>
             </tr>
             </table>
 </div>

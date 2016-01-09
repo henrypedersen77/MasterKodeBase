@@ -17,8 +17,7 @@
                 Price: self.product.Price,
                 Description: self.product.Description,
                 Image: self.product.Image
-            }).then(
-            function (result) {
+            }).then(function (result) {
                 self.message = 'the product have been saved!';
             }, function (result) {
                 self.message = 'error: ' + result.data;

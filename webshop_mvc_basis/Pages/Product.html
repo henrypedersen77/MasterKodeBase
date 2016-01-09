@@ -1,24 +1,21 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="Product">
 <head>
-    <title>Product</title>
-
+    <title>
+    Product
+    </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link href="../Styles/StyleSheet.css" rel="stylesheet" />
     <link href="../Frameworks/bootstrap-3.3.5-dist/css/bootstrap.css" rel="stylesheet" />
-
     <script src="../Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="../Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
     <script src="../Scripts/Template.js"></script>
-
     <script src="../Frameworks/angular-1.4.5/angular.js"></script>
     <script src="../Scripts/Product.js"></script>
 </head>
 <body ng-controller="ProductCtrl as ctrl">
     <div id="header"></div> <!-- Template.js indsætter Template.html her -->
-
     <div id="container">
         <!-- MVC JavaScript opgave ----
          Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework.
@@ -30,17 +27,30 @@
         <div>
             <img ng-src={{ctrl.getImageLink(ctrl.product.Image)}} class="detailsImage" />
             <h2>
-                <label id="lblTitle">{{ctrl.Name}}</label>
+                <label id="lblTitle">
+                {{ctrl.Name}}
+                </label>
             </h2>
         </div>
         <div>
-            <label id="lblDescription" class="detailsDescription">{{ctrl.product.Description}}</label>
+            <label id="lblDescription" class="detailsDescription">
+            {{ctrl.product.Description}}
+            </label>
             <hr />
-            <label id="lblPrice" class=" detailsPrice">{{ctrl.product.Price}}</label><br />
+            <label id="lblPrice" class=" detailsPrice">
+            {{ctrl.product.Price}}
+            </label>
+            <br />
             Quantity:<select id="ddlAmount" ng-model="ctrl.product.amount">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
+                <option>
+            1
+                </option>
+                <option>
+            2
+                </option>
+                <option>
+            3
+                </option>
             </select>
             <!-- MVC JavaScript opgave
                  Ved tryk på nedenstående knap skal der sender en HTTP post til /api/cart med JSON data på følgende form
@@ -57,19 +67,23 @@
                 med beskeden "Please log in to order items" -->
             <input id="btnAdd" type="button" value="Add Product" class=" button" ng-click="ctrl.buy()"/>
             <br />
-
             <!-- MVC JavaScript opgave ----
                  Efter klik på Add Product knappen, skal beskeden "Order was succesfully inserted" stå angivet i nedenstående label -->
-            <label id="lblResult">{{ctrl.message}}</label>
+            <label id="lblResult">
+            {{ctrl.message}}
+            </label>
         </div>
         <div>
             Product No: <br />
-            <label id="lblItemNr" style="font-style: italic">{{ctrl.product.ID}}</label>
+            <label id="lblItemNr" style="font-style: italic">
+            {{ctrl.product.ID}}
+            </label>
         </div>
-
         <!-- Nedenstående felt lblAvailable bindes der ikke til, den blev heller ikke anvedt i tutorialen. -->
         <div class=" auto-style2">
-            <label id="lblAvailable" class="productPrice">Available!</label>
+            <label id="lblAvailable" class="productPrice">
+            Available!
+            </label>
         </div>
     </div>
 </body>

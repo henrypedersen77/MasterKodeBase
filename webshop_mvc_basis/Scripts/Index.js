@@ -6,15 +6,11 @@
         $http.get('/api/product').then(function (result) {
             self.products = result.data;
         });
-
         self.getImageLink = function (p) {
             return '../Content/Images/Products/' + p;           
         }
-
-        self.rederect = function (p) {
-            
+        self.rederect = function (p) {   
                 $window.location.href = '../Pages/Product.html#?Id=' + p;
-            
         }
     }]);
 })();
