@@ -1,13 +1,12 @@
-﻿app = Ember.Application.create({ rootElement: "#ember-app" });
-
+﻿app = Ember.Application.create({ 
+    rootElement: "#ember-app" 
+});
 app.ProductAdapter = DS.JSONAPIAdapter.extend({
     namespace: 'api'
 });
-
 app.ProducttypeAdapter = DS.JSONAPIAdapter.extend({
     namespace: 'api'
 });
-
 app.Product = DS.Model.extend({
         name: DS.attr('string'),
         description: DS.attr('string'),
@@ -16,16 +15,13 @@ app.Product = DS.Model.extend({
         typeid: DS.attr('number')
     }
 );
-
 app.Producttype = DS.Model.extend({
         name: DS.attr('string')
     }
 );
-
 var inflector = Ember.Inflector.inflector;
 inflector.irregular('product', 'product');
 inflector.irregular('producttype', 'producttype');
-
 app.ProductSerializer = DS.JSONSerializer.extend({
     normalizeResponse: function (store, primaryModelClass, payload, id, requestType) {
         var data = new Array;
@@ -44,7 +40,6 @@ app.ProductSerializer = DS.JSONSerializer.extend({
         return this._super(...arguments);
     }
 });
-
 app.ProducttypeSerializer = DS.JSONSerializer.extend({
     normalizeResponse: function (store, primaryModelClass, payload, id, requestType) {
         var data = new Array;
@@ -59,14 +54,12 @@ app.ProducttypeSerializer = DS.JSONSerializer.extend({
         return this._super(...arguments);
     }
 });
-
 app.IndexRoute = Ember.Route.extend({
     model: function() {
         return {products: this.store.findAll('product'),
             producttypes: this.store.findAll('producttype')}
     }
 });
-
 app.IndexController = Ember.Controller.extend({
     self:this,
     actions: {

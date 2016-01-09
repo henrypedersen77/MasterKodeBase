@@ -1,10 +1,9 @@
-﻿/// <reference path="C:\master_proj\hped_ember\webshop_mvc_basis\Pages/Product.html" />
-app = Ember.Application.create({ rootElement: "#ember-app" });
-
+﻿app = Ember.Application.create({ 
+    rootElement: "#ember-app" 
+});
 app.ProductAdapter = DS.JSONAPIAdapter.extend({
         namespace: 'api'
 });
-
 app.Product = DS.Model.extend({
         name: DS.attr('string'),
         description: DS.attr('string'),
@@ -13,10 +12,8 @@ app.Product = DS.Model.extend({
         type_id: DS.attr('number')
     }
 );
-
 var inflector = Ember.Inflector.inflector;
 inflector.irregular('product', 'product');
-
 app.ProductSerializer = DS.JSONSerializer.extend({
     normalizeResponse: function (store, primaryModelClass, payload, id, requestType) {
         var data = new Array;
@@ -35,14 +32,11 @@ app.ProductSerializer = DS.JSONSerializer.extend({
         return this._super(...arguments);
     }
 });
-
-
 app.IndexRoute = Ember.Route.extend({
     model: function() {
         return this.store.findAll('product');
     }
 });
-
 app.IndexController = Ember.Controller.extend({
     actions: {
         productView: function(id) {

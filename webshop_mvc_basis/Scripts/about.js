@@ -1,5 +1,6 @@
-﻿app = Ember.Application.create({ rootElement: "#ember-app" });
-
+﻿app = Ember.Application.create({
+    rootElement: "#ember-app"
+});
 app.IndexRoute = Ember.Route.extend({
     model: function () {
         return {

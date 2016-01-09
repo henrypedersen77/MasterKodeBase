@@ -1,5 +1,6 @@
-﻿app = Ember.Application.create({ rootElement: "#ember-app" });
-
+﻿app = Ember.Application.create({ 
+    rootElement: "#ember-app" 
+});
 app.IndexRoute = Ember.Route.extend({
     model: function () {
         var orders = new Array;
@@ -24,19 +25,15 @@ app.IndexRoute = Ember.Route.extend({
         })
     }
 });
-
 var inflector = Ember.Inflector.inflector;
 inflector.irregular('login', 'login');
-
 app.LoginAdapter = DS.JSONAPIAdapter.extend({
     namespace: 'api'
 });
-
 app.Login = DS.Model.extend({
     login: DS.attr('string'),
     guid: DS.attr('string')
 });
-
 app.Cart = DS.Model.extend({
     clientID: DS.attr('string'),
     productID: DS.attr('number'),
@@ -44,41 +41,25 @@ app.Cart = DS.Model.extend({
     datePurchased: DS.attr('date'),
     isInCart: DS.attr('boolean')
 });
-
 app.LoginSerializer = DS.JSONSerializer.extend({
     normalizeResponse: function (store, primaryModelClass, payload, id, requestType) {
         var login = new Object();
         login.type = "login";
         login.id = 1;
         login.login = payload.login;
-        login.guid = payload.user.Guid;
-       
+        login.guid = payload.user.Guid;    
         payload = login;
         return this._super(...arguments);
     },
     normalizeArrayResponse: function(store, primaryModelClass, payload, id, requestType)  
     {   
-        console.log(payload);
-
         var data = new Array;
         payload.id = 1;
         data.push(payload);
-
         payload = data;
-        console.log(payload);
-
         return this._super(...arguments);
     }
 });
-
-//app.CartSerializer = DS.JSONSerializer.extend({
-//    normalizeResponse: function (store, primaryModelClass, payload, id, requestType) {
-//        console.log("normalixe Cart");
-//        console.log(payload);
-//        return this._super(...arguments);
-//    }
-//});
-
 app.IndexController = Ember.Controller.extend({
     selectedAmount : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     actions: {
@@ -95,7 +76,6 @@ app.IndexController = Ember.Controller.extend({
             Ember.set(this.model, 'subtotal', subtotal);
             Ember.set(this.model, 'vat', vat);
             Ember.set(this.model, 'totalamount', totalamount);
-
             var url = "/api/cart/" + this.model[v1].ID + "/amount";
             var o = {
                 url: url,
@@ -115,19 +95,15 @@ app.IndexController = Ember.Controller.extend({
                 contentType: 'application/json; charset=utf-8'
             };
             $.ajax(o);
-
             this.model.removeAt(index, 1);
         },
         checkOut: function(){
-            console.log("checkout");
-            
             var dataArray = new Array;
             for (var j = 0; j < this.model.length; j++){
                 var obj = new Object();
                 obj.ID = this.model[j].ID;
                 dataArray.push(obj);
             }
-
             var url = "/api/cart/paid";
             var o = {
                 url: url,
@@ -137,26 +113,13 @@ app.IndexController = Ember.Controller.extend({
                 contentType: 'application/json; charset=utf-8'
             };
             $.ajax(o);
-
             window.location.replace("/Pages/Success.html");
         }
     }
 });
-
 app.EqHelper = Ember.Helper.helper(function(args) {
     return args[0] === args[1];
 });
-
 app.MulHelper = Ember.Helper.helper(function(args) {
     return args[0] * args[1];
 });
-
-//app.SubTotalHelper = Ember.Helper.helper(function(args) {
-//    var SubTotal = 0;
-//    for (var j = 0; j < args[0].length; j++){
-        
-//        SubTotal = SubTotal + (args[0][j].Amount * args[0][j].Product.Price);
-//    }
-
-//    return SubTotal;
-//});

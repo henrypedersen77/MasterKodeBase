@@ -1,22 +1,19 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Product</title>
-
+    <title>
+    Product
+    </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link href="../Styles/StyleSheet.css" rel="stylesheet" />
     <link href="../Frameworks/bootstrap-3.3.5-dist/css/bootstrap.css" rel="stylesheet" />
-
     <script src="../Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="../Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
     <script src="../Scripts/Template.js"></script>
-
     <script src="/Frameworks/ember-template-compiler.js"></script>
     <script src="/Frameworks/ember.debug.js"></script>
     <script src="/Frameworks/ember-data.js"></script>
-
     <script src="../Scripts/product.js"></script>
 </head>
 <body id="ember-app">
@@ -26,8 +23,6 @@
             {{outlet}}
         </div>
     </script>
-
-
     <!-- MVC JavaScript opgave ----
      Opret forbindelse/hook imellem nedenstående felter, knap og det pågældende mvc javascript framework.
      Dvs. det pågældende produkt skal loades fra databasen og vises i nednestående html elementer.
@@ -39,17 +34,30 @@
         <div>
             <img src={{model.image}} class="detailsImage" />
             <h2>
-                <label id="lblTitle">{{model.name}}</label>
+                <label id="lblTitle">
+                {{model.name}}
+                </label>
             </h2>
         </div>
         <div>
-            <label id="lblDescription" class="detailsDescription">{{model.description}}</label>
+            <label id="lblDescription" class="detailsDescription">
+            {{model.description}}
+            </label>
             <hr />
-            <label id="lblPrice" class=" detailsPrice">{{model.price}}</label><br />
-            Quantity:<select id="ddlAmount">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
+            <label id="lblPrice" class=" detailsPrice">
+            {{model.price}}
+            </label><br />
+            Quantity:
+            <select id="ddlAmount">
+                <option>
+                1
+                </option>
+                <option>
+                2
+                </option>
+                <option>
+                3
+                </option>
             </select>
             <!-- MVC JavaScript opgave ----
                  Ved tryk på nedenstående knap skal der sender en HTTP post til /api/cart med JSON data på følgende form
@@ -69,16 +77,22 @@
 
             <!-- MVC JavaScript opgave ----
                  Efter klik på Add Product knappen, skal beskeden "Order was succesfully inserted" stå angivet i nedenstående label -->
-            <label id="lblResult">{{statusmessage}}</label>
+            <label id="lblResult">
+            {{statusmessage}}
+            </label>
         </div>
         <div>
-            Product No: <br />
-            <label id="lblItemNr" style="font-style: italic">{{model.id}}</label>
+            Product No: 
+            <br />
+            <label id="lblItemNr" style="font-style: italic">
+            {{model.id}}
+            </label>
         </div>
-
         <!-- Nedenstående felt lblAvailable bindes der ikke til, den blev heller ikke anvedt i tutorialen. -->
         <div class=" auto-style2">
-            <label id="lblAvailable" class="productPrice">Available!</label>
+            <label id="lblAvailable" class="productPrice">
+            Available!
+            </label>
         </div>
     </script>
 </body>

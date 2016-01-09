@@ -1,31 +1,25 @@
-﻿app = Ember.Application.create({ rootElement: "#ember-app" });
-
+﻿app = Ember.Application.create({ 
+    rootElement: "#ember-app" 
+});
 app.ProductAdapter = DS.JSONAPIAdapter.extend({
     namespace: 'api'
 });
-
 app.ProducttypeAdapter = DS.JSONAPIAdapter.extend({
     namespace: 'api'
 });
-
 app.Product = DS.Model.extend({
     name: DS.attr('string'),
     description: DS.attr('string'),
     image: DS.attr('string'),
     price: DS.attr('number'),
     typeid: DS.attr('number')
-}
-);
-
+});
 app.Producttype = DS.Model.extend({
     name: DS.attr('string')
-}
-);
-
+});
 var inflector = Ember.Inflector.inflector;
 inflector.irregular('product', 'product');
 inflector.irregular('producttype', 'producttype');
-
 app.ProductSerializer = DS.JSONSerializer.extend({
     normalizeResponse: function (store, primaryModelClass, payload, id, requestType) {
         var product = new Object();
@@ -40,7 +34,6 @@ app.ProductSerializer = DS.JSONSerializer.extend({
         return this._super(...arguments);
     }
 });
-
 app.ProducttypeSerializer = DS.JSONSerializer.extend({
     normalizeResponse: function (store, primaryModelClass, payload, id, requestType) {
         var data = new Array;
@@ -55,7 +48,6 @@ app.ProducttypeSerializer = DS.JSONSerializer.extend({
         return this._super(...arguments);
     }
 });
-
 app.IndexRoute = Ember.Route.extend({
     model: function () {
         var self = this;
@@ -89,7 +81,6 @@ app.IndexRoute = Ember.Route.extend({
         }
     )}
 });
-
 app.IndexController = Ember.Controller.extend({
     changedtype: null,
     changedimage: null,
@@ -170,11 +161,9 @@ app.IndexController = Ember.Controller.extend({
         }
     }
 });
-
 app.EqHelper = Ember.Helper.helper(function(args) {
     return args[0] === args[1];
 });
-
 app.EqintHelper = Ember.Helper.helper(function(args) {
     return args[0] === parseInt(args[1]);
 });

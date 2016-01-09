@@ -1,22 +1,19 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
-
+    <title>
+    Login
+    </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link href="/Styles/StyleSheet.css" rel="stylesheet" />
     <link href="/Frameworks/bootstrap-3.3.5-dist/css/bootstrap.css" rel="stylesheet" />
-
     <script src="/Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="/Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
     <script src="/Scripts/Template.js"></script>
-
     <script src="/Frameworks/ember-template-compiler.js"></script>
     <script src="/Frameworks/ember.debug.js"></script>
     <script src="/Frameworks/ember-data.js"></script>
-
     <script src="../../Scripts/login.js"></script>
 </head>
 <body id="ember-app">
@@ -39,23 +36,24 @@
             {{outlet}}
         </div>
     </script>
-
     <script type="text/x-handlebars" data-template-name="index">
-        <h4>Log In</h4>
+        <h4>
+        Log In
+        </h4>
         <hr />
         <p>
-            <div id="statusmessage">{{statusmessage}}</div>
+            <div id="statusmessage">
+            {{statusmessage}}
+            </div>
         </p>
         User name:
         <br />
         {{input id="login" value=login type="text" class="inputs"}}
         <br />
-
         Password:
         <br />
         {{input id="txtPassword" type="password" class="inputs" value=password}}
         <br />
-
         <input id="btnLogin" type="button" value="Log in" class="button" {{action "loginUser"}} />
     </script>
 </body>

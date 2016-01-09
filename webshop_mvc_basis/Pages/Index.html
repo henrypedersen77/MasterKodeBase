@@ -1,33 +1,28 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Garage Manager</title>
-
+    <title>
+    Garage Manager
+    </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link href="../Styles/StyleSheet.css" rel="stylesheet" />
     <link href="../Frameworks/bootstrap-3.3.5-dist/css/bootstrap.css" rel="stylesheet" />
-
     <script src="../Frameworks/jQuery/jquery-2.1.4.js"></script>
     <script src="../Frameworks/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
     <script src="../Scripts/Template.js"></script>  
-
     <script src="../Frameworks/ember-template-compiler.js"></script>
     <script src="../Frameworks/ember.debug.js"></script>
     <script src="../Frameworks/ember-data.js"></script>
-
     <script src="../Scripts/index.js"></script>
 </head>
 <body id="ember-app">
     <div id="header"></div> <!-- Template.js indsætter Template.html her -->
-
     <script type="text/x-handlebars" data-template-name="application"> 
         <div id="ContentPlaceHolder1_pnlProducts">
             {{outlet}}
         </div>
     </script>
-
     <script type="text/x-handlebars" data-template-name="index">
         <!-- MVC JavaScript opgave ----
          Der skal laves et div element per produkt, eller en række i et grid.
@@ -41,12 +36,15 @@
              Produkt skal vises på den side. -->
             <input type="image" class="productImage" src={{product.image}} {{action "productView" product.id}}/>
             <br />
-            <span class="productName">{{product.name}}</span>
+            <span class="productName">
+            {{product.name}}
+            </span>
             <br />
-            <span class="productPrice">{{product.price}}</span>
+            <span class="productPrice">
+            {{product.price}}
+            </span>
         </div>
         {{/each}}
     </script>
-
 </body>
 </html>
